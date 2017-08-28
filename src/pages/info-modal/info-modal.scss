@@ -1,0 +1,154 @@
+page-info-modal {    
+    
+    .toolbar-background {
+        background-color: rgba(0,0,0,0);
+      }
+      
+      .box{
+          width: 70%;
+          height: 50%;
+          margin-top: 40%;
+          margin-left: 15%;
+          border-radius: 5px;
+          box-shadow: 10px 10px 5px #666666;
+          padding: 0px;
+          background: white;
+          
+          .fixed{
+              height: 80%;
+              width: 100%;
+              
+              .navbar{
+                margin-top: -5px;
+                margin-left: 20%;
+               }
+               
+               .button{
+                    margin-right: 20%;
+                }
+                
+                .title{
+                    margin-left: 15%;
+                }
+          }
+          
+          .box_copyright{
+              margin-top: -15px;
+              
+              .img_logo{
+                  width: 70%;
+                  height: auto;
+              }
+          }
+          
+      }
+      .modalContentStart {
+          height: 100%;
+          width: 100%;
+          -webkit-animation:  changeBgColorStart 1.2s forwards;
+          -moz-animation:     changeBgColorStart 1.2s forwards;
+          -ms-animation:      changeBgColorStart 1.2s forwards;
+          -o-animation:       changeBgColorStart 1.2s forwards;
+          animation:          changeBgColorStart 1.2s forwards;
+       }
+       
+       .modalContentEnd {
+          height: 100%;
+          width: 100%;
+          -webkit-animation:  changeBgColorEnd 0.2s forwards;
+          -moz-animation:     changeBgColorEnd 0.2s forwards;
+          -ms-animation:      changeBgColorEnd 0.2s forwards;
+          -o-animation:       changeBgColorEnd 0.2s forwards;
+          animation:          changeBgColorEnd 0.2s forwards;
+       }
+       
+       @-webkit-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-moz-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-o-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-ms-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+          
+        @-webkit-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-moz-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-o-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-ms-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+}

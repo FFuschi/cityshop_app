@@ -1,0 +1,48 @@
+page-profile {
+    .toolbar-background {
+        background-color: #ff823e;
+    }
+    
+    .img_row{
+        
+        height: 180px;
+        
+        .img_col{
+            height: 100%;
+            text-align: center;
+                
+            .img_profile{
+                margin-top: 2%;
+                height: 80%;
+                width: auto;
+                border-radius: 50%;
+            }
+        }
+        
+    }
+    
+    .text_row{
+        
+        margin-left: 5%;
+        
+        .text_col{
+            h4{  
+                padding-top: 10%;
+            }
+        }
+        .edit_button {
+            margin-left: 70%;
+        }
+    }
+    
+    .div_image{
+        border: 1px solid #7b7b7b;
+        
+        img {
+            
+            height: auto;
+            width: 95%;
+            margin-top: 2.5%;
+        }
+    }
+}

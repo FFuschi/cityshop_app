@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar hideBackButton class="navbar">
+    <ion-item>
+        <ion-avatar item-start class="avatarsize">
+          <img class="avatarsize" src="http://dominiotestprova.altervista.org/image/avatars/{{image}}" (click)="go_profile()">
+        </ion-avatar>
+        <h2>Bentornato {{firstname}}</h2>
+        <button ion-button icon-only color="dark" clear item-end (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-item>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div #map id="map_canvas" style="height:100%;">
+        <img class="logosize" src="assets/images/appNome.png">
+    </div>
+</ion-content>

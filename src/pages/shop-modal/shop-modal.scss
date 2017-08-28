@@ -1,0 +1,177 @@
+page-shop-modal {
+    .toolbar-background {
+        background-color: rgba(0,0,0,0);
+      }
+      
+      .box{
+          width: 80%;
+          height: 70%;
+          margin-top: 25%;
+          margin-left: 10%;
+          border-radius: 5px;
+          box-shadow: 10px 10px 5px #666666;
+          padding: 0px;
+          background: white;
+          
+          .fixed{
+              height: 90%;
+              width: 100%;
+              
+              .navbar{
+                margin-top: -5px;
+                margin-left: 20%;
+               }
+               
+               .button{
+                    margin-right: 20%;
+                }
+                
+          }
+          
+          .box_copyright{
+              margin-top: -20px;
+              
+               .img_shop{
+                    height: auto;
+                    width: 100%;
+                    padding: 2px;
+                    border-radius: 50%;
+                }
+                
+                .shop_name{
+                    margin-top: 25%;
+                }
+                
+                .second_row{
+                    margin-top: 15px;
+                    
+                    .link {
+                        color: #308EFD;
+                        text-decoration: underline;
+                    }
+                }
+                
+                .img_div {
+                    border: 1px solid #D8D8D8;
+                    
+                    img {
+                        width: 95%;
+                        height: auto;
+                        margin: 2.5%;
+                        
+                    }
+                }
+                  
+          }
+          
+      }
+      .modalContentStart {
+          height: 100%;
+          width: 100%;
+          -webkit-animation:  changeBgColorStart 1.2s forwards;
+          -moz-animation:     changeBgColorStart 1.2s forwards;
+          -ms-animation:      changeBgColorStart 1.2s forwards;
+          -o-animation:       changeBgColorStart 1.2s forwards;
+          animation:          changeBgColorStart 1.2s forwards;
+       }
+       
+       .modalContentEnd {
+          height: 100%;
+          width: 100%;
+          -webkit-animation:  changeBgColorEnd 0.2s forwards;
+          -moz-animation:     changeBgColorEnd 0.2s forwards;
+          -ms-animation:      changeBgColorEnd 0.2s forwards;
+          -o-animation:       changeBgColorEnd 0.2s forwards;
+          animation:          changeBgColorEnd 0.2s forwards;
+       }
+       
+       @-webkit-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-moz-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-o-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @-ms-keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+
+          @keyframes changeBgColorStart {
+            0% {
+              background: rgba(0,0,0,0);
+            }
+            100% {
+              background: rgba(0,0,0,0.5);
+            }
+          }
+          
+        @-webkit-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-moz-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-o-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @-ms-keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+
+          @keyframes changeBgColorEnd {
+            0% {
+              background: rgba(0,0,0,0.5);
+            }
+            100% {
+              background: rgba(0,0,0,0);
+            }
+          }
+}
