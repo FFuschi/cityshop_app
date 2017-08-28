@@ -57,7 +57,7 @@ export class AccountProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.LOGIN, { email, password })
+            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.LOGIN, { email, password })
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();

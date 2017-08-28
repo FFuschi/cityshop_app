@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppVersion } from '@ionic-native/app-version';
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
+import { Camera} from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { SplashPage } from '../pages/splash/splash';
@@ -16,6 +17,10 @@ import { PopoverPage } from '../pages/popover/popover';
 import { InfoModalPage } from '../pages/info-modal/info-modal';
 import { ShopModalPage } from '../pages/shop-modal/shop-modal';
 import { ProfilePage } from '../pages/profile/profile';
+import { LoginPage } from '../pages/login/login';
+import { RegistrazionePage } from '../pages/registrazione/registrazione';
+import { TutorialPage } from '../pages/tutorial/tutorial';
+
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
 
@@ -27,7 +32,10 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     PopoverPage,
     InfoModalPage,
     ShopModalPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    RegistrazionePage,
+    TutorialPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +53,10 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     PopoverPage,
     InfoModalPage,
     ShopModalPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    RegistrazionePage,
+    TutorialPage
   ],
   providers: [
     SplashScreen,
@@ -54,6 +65,7 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     StatusBar,
     AppVersion,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
     HttpModule,
     IonicStorageModule,
     AccountProvider,

@@ -1,0 +1,29 @@
+<ion-content class="home" padding>
+
+  <ion-img class="icon" img src="assets/images/splash.png"></ion-img>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div class="forgotten">
+    Password dimenticata?
+  </div>
+  <p>
+    <button ion-button block (click)="login()">Login</button>
+  </p>
+  <p>
+    <button [navPush]="regButton" ion-button block>Registrati</button>
+  </p>
+
+</ion-content>

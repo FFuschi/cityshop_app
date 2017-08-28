@@ -36,8 +36,6 @@ export class HomePage {
     
     firstname: String = "";
     image: String = "";
-    username: string = "test@test.it";
-    password: string = "asd";
     map: GoogleMap;
     
     constructor(
@@ -65,26 +63,21 @@ export class HomePage {
             // set status bar to white
             this.statusBar.backgroundColorByHexString('#7b7b7b');
             
-            this.login();
+            this.getUser();
             this.loadMap();
             
         });
         
     }
     
-    login() {
+    getUser() {
+        var user = this.sAccount.getUser();
+        this.firstname = user.firstname;
+        this.image = user.image;
             
-        this.sAccount.login(this.username, this.password)
-            .then((user: User) => {
-                console.log("logged: ", user);
-                this.firstname = user.firstname;
-                this.image = user.image;
-            })
-            .catch(() => {
-                console.log("errore login: non mi sono riuscito a loggare");
-
-            });
     }
+    
+    
 
     loadMap() {
      // make sure to create following structure in your view.html file

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { HomePage } from '../home/home';
+import { TutorialPage } from '../tutorial/tutorial';
 
 /**
  * Generated class for the SplashPage page.
@@ -28,11 +28,11 @@ export class SplashPage {
 
   ionViewDidLoad() {
     setTimeout(() => this.splash = false, 5000);
-    setTimeout(() => this.navCtrl.push(HomePage), 5000);
+    setTimeout(() => this.navCtrl.push(TutorialPage), 5000);
   }
 
   onLink() {
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(TutorialPage);
   }
 
 }
