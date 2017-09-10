@@ -26,6 +26,7 @@ import { ProdottoPage } from '../pages/prodotto/prodotto';
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
 import { StoreProvider } from '../providers/store/store';
+import { ProductProvider } from '../providers/product/product';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { StoreProvider } from '../providers/store/store';
     IonicStorageModule,
     AccountProvider,
     UserPersistanceProvider,
-    StoreProvider
+    StoreProvider,
+    ProductProvider
   ]
 })
 export class AppModule {}

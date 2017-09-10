@@ -4,7 +4,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import {Store} from '../../models/store.model';
-import {Product} from '../../models/product.model';
+import {Categoria} from '../../models/categoria.model';
+import {Brand} from '../../models/brand.model';
 
 //Constants
 import {URL_BASE, URL_ORIGINAL, URL} from '../../constants';
@@ -75,17 +76,19 @@ export class StoreProvider {
         });
     }
     
-    getAllProducts(id: Number): Promise<Array<Product>> {
+    getStoreCategories(id: Number): Promise<Array<Categoria>>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.STORES.ALLPRODUCT, {"id": id})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.STORES.CATEGORY, {"id": id})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
-                    if (json.result) {
-                        resolve(json.data);
+                    if (json.result) { 
+                        let result: Array<Categoria> = json.data;
+                        
+                        resolve(result);
                     } else {
                         reject();
                     }
@@ -96,18 +99,19 @@ export class StoreProvider {
         });
     }
     
-    getProduct(id: Number): Promise<Product> {
+    getStoreBrands(id: Number): Promise<Array<Brand>>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.STORES.PRODUCT, {"id": id})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.STORES.BRAND, {"id": id})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
-                    if (json.result) {
-                        let product = new Product(json.data);
-                        resolve(product);
+                    if (json.result) { 
+                        let result: Array<Brand> = json.data;
+                        
+                        resolve(result);
                     } else {
                         reject();
                     }

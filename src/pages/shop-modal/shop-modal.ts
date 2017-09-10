@@ -11,6 +11,8 @@ import {
 import { ProductsListPage } from '../products-list/products-list';
 
 import {Store} from '../../models/store.model';
+import {Categoria} from '../../models/categoria.model';
+import {Brand} from '../../models/brand.model';
 
 import {StoreProvider} from '../../providers/store/store';
 
@@ -30,6 +32,8 @@ export class ShopModalPage {
     map: GoogleMap;
     shop_id: Number;
     shop: Store;
+    categorie: Array<Categoria>;
+    brands: Array<Brand>;
 
   constructor(
       public navCtrl: NavController, 
@@ -48,6 +52,8 @@ export class ShopModalPage {
   ngOnInit(){
         this.shop_id =  this.navParams.get('shop_id');
         this.getStore();
+        this.getCategories();
+        this.getBrands();
     }
   
   ionViewWillEnter(){
@@ -84,6 +90,26 @@ export class ShopModalPage {
         this.sStore.getStore(this.shop_id)
             .then((data: Store)=>{
                 this.shop = data;
+            })
+            .catch(()=>{
+                console.log("errore Shop: non sono riuscito a caricare le Info");
+            }); 
+  }
+  
+  getCategories(){
+      this.sStore.getStoreCategories(this.shop_id)
+            .then((data: Array<Categoria>)=>{
+                this.categorie = data;
+            })
+            .catch(()=>{
+                console.log("errore Shop: non sono riuscito a caricare le Info");
+            }); 
+  }
+  
+  getBrands(){
+      this.sStore.getStoreBrands(this.shop_id)
+            .then((data: Array<Brand>)=>{
+                this.brands = data;
             })
             .catch(()=>{
                 console.log("errore Shop: non sono riuscito a caricare le Info");

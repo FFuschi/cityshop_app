@@ -4,7 +4,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
 //Providers
-import {StoreProvider} from '../../providers/store/store';
+import {ProductProvider} from '../../providers/product/product';
 
 import {Product} from '../../models/product.model';
 
@@ -32,7 +32,7 @@ export class ProductsListPage {
       public navParams: NavParams,
       public plt: Platform, 
       private statusBar: StatusBar, 
-      public sStore: StoreProvider 
+      public sProduct: ProductProvider 
       ) {
       
       this.plt.ready().then(() => {
@@ -63,7 +63,7 @@ export class ProductsListPage {
     
     getProducts(id: Number){
 
-        this.sStore.getAllProducts(id)
+        this.sProduct.getAllProducts(id)
             .then((data: Array<Product>)=>{
                 this.products = data;   
            
@@ -75,7 +75,7 @@ export class ProductsListPage {
     }
 
     openProduct(id: Number) {
-        this.navCtrl.push(ProdottoPage, {product_id: id});
+        this.navCtrl.push(ProdottoPage, {product_id: id, store_name: this.store_name});
     }
 
 }

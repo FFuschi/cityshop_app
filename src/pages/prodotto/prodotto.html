@@ -3,7 +3,7 @@
   <ion-navbar color="primary">
 
     <ion-title class="titolo">
-      NomeMarca
+      {{store_name}}
     </ion-title>
 
   </ion-navbar>
@@ -14,8 +14,14 @@
 
 <ion-grid>
   <ion-row>
-      <ion-col col-6><img src="../../assets/img/maglietta.jpg"></ion-col>
-      <ion-col col-6 class="nomeprod">Maglietta grigia</ion-col>
+      <ion-col col-6>
+          <img *ngIf="product != null" src="http://dominiotestprova.altervista.org/image/products/{{product.foto}}">
+      </ion-col>
+      <ion-col col-6 class="nomeprod">
+          <h2 *ngIf="product != null">{{product.nome}}</h2>
+          <br>
+          <h2 *ngIf="product != null">{{product.prezzo}}€</h2>
+      </ion-col>
   </ion-row>
 </ion-grid>﻿
 
@@ -30,8 +36,8 @@
 </div>
 
 <ion-card>
-    <ion-card-content>
-        La maglietta è un capo di abbigliamento di stoffa, senza bottoni e senza colletto, che ricopre il torso di chi la indossa e che può essere confezionata a maniche lunghe o a maniche corte, in tessuti naturali come il cotone, o in fibre sintetiche, mentre vi sono anche magliette in tinta unita oppure in fantasia multi-colore.
+    <ion-card-content *ngIf="product != null">
+        {{product.descrizione}}
     </ion-card-content>
 </ion-card>
 </ion-content>

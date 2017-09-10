@@ -9,15 +9,24 @@ export const URL = {
         SIGNUP: "users/",
         LOGIN: "login/",
         LOGOUT: "logout/",
-        UPDATE: "users/"
+        UPDATE: "users/",
+        CATEGORY: "category/",
+        BRAND: "brand/"
     },
     
     STORES: {
         ALLSTORE: "stores/",
         STORE: "store/",
-        ALLPRODUCT: "products/",
-        PRODUCT: "product/"
+        CATEGORY: "store/categories/",
+        BRAND: "store/brands/"
     },
+    
+    PRODUCTS: {
+        ALLPRODUCT: "products/",
+        PRODUCT: "product/",
+        CATEGORY: "product/category/",
+        BRAND: "product/brand/"
+    }
     
 }
 

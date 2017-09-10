@@ -44,50 +44,30 @@
 
                         <ion-row center >
                           <ion-col>
-                              <p no-padding no-margin>Brands</p>
-
-                           </ion-col>
-
-                      </ion-row>
-                    <ion-row center >
-                          <ion-col>
-                              <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
-                              </div>
-                           </ion-col>
-                           <ion-col>
-                              <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
-                              </div>
-                           </ion-col>
-                        <ion-col>
-                              <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
-                              </div>
-                           </ion-col>
-
-                      </ion-row>
-                    <ion-row center >
-                          <ion-col>
                               <p no-padding no-margin>Categorie</p>
 
                            </ion-col>
 
                       </ion-row>
                     <ion-row center >
+                          <ion-col *ngFor="let item of categorie">
+                              <div class="img_div">
+                                <img src="http://dominiotestprova.altervista.org/image/categories/{{item.foto}}" no-padding no-margin>
+                              </div>
+                           </ion-col>
+
+                      </ion-row>
+                    <ion-row center >
                           <ion-col>
-                              <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
-                              </div>
+                              <p no-padding no-margin>Brands</p>
+
                            </ion-col>
-                           <ion-col>
+
+                      </ion-row>
+                    <ion-row center >
+                          <ion-col *ngFor="let item of brands">
                               <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
-                              </div>
-                           </ion-col>
-                        <ion-col>
-                              <div class="img_div">
-                                <img src="assets/images/avatars/test.png" no-padding no-margin>
+                                <img src="http://dominiotestprova.altervista.org/image/brands/{{item.foto}}" no-padding no-margin>
                               </div>
                            </ion-col>
 
