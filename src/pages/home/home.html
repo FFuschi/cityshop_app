@@ -3,11 +3,11 @@
       <ion-row center>
             <ion-col  col-4>
                 <div class="avatarsize">
-                  <img src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" (click)="go_profile()">
+                  <img *ngIf="user != null" src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" (click)="go_profile()">
                 </div>
             </ion-col>
             <ion-col class="center">
-                  <h2>Bentornato {{user.firstname}}</h2>
+                  <h2 *ngIf="user != null">Bentornato {{user.firstname}}</h2>
             </ion-col>
             <ion-col class="right" col-2>      
                   <button ion-button clear color="dark" icon-only class="button" (click)="presentPopover($event)">

@@ -19,14 +19,14 @@
                       <ion-row center>
                             <ion-col no-padding no-margin>
 
-                                <img class="img_shop" src="http://dominiotestprova.altervista.org/image/store/{{ store.foto }}" no-padding no-margin>
+                                <img *ngIf="shop != null" class="img_shop" src="http://dominiotestprova.altervista.org/image/store/{{shop.foto}}" no-padding no-margin>
                             </ion-col>
                           <ion-col no-padding no-margin>
 
                               <div class="shop_name">
-                                    <h5 text-uppercase no-padding no-margin color="dark">{{ store.nome }}</h5>
-                                    <p no-padding no-margin>{{ store.address }}</p>
-                                    <p no-padding no-margin>Telefono: <a class="phone" href="tel:{{ store.phone }}">{{ store.phone }}</a></p> 
+                                    <h5 text-uppercase no-padding no-margin color="dark" *ngIf="shop != null">{{shop.nome}}</h5>
+                                    <p no-padding no-margin *ngIf="shop != null">{{shop.address}}</p>
+                                    <p no-padding no-margin>Telefono: <a *ngIf="shop != null" class="phone" href="tel:{{shop.phone}}">{{shop.phone}}</a></p> 
                               </div>
                            </ion-col>
                       </ion-row>

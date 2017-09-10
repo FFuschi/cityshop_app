@@ -95,5 +95,27 @@ export class StoreProvider {
                 });
         });
     }
+    
+    getProduct(id: Number): Promise<Product> {
+        return new Promise((resolve, reject) => {
+            //URL_BASE = conessione tramite proxy;
+            //URL_ORIGINAL = connessione diretta;
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.STORES.PRODUCT, {"id": id})
+                .toPromise()
+                .then((res: Response) => {
+                    const json = res.json();
+                    
+                    if (json.result) {
+                        let product = new Product(json.data);
+                        resolve(product);
+                    } else {
+                        reject();
+                    }
+                })
+                .catch((err: Response) => {
+                    reject(`Errore status: ${err.status}`)
+                });
+        });
+    }
 
 }

@@ -29,7 +29,7 @@ export class ShopModalPage {
     
     map: GoogleMap;
     shop_id: Number;
-    store: Store;
+    shop: Store;
 
   constructor(
       public navCtrl: NavController, 
@@ -41,10 +41,14 @@ export class ShopModalPage {
        ) {
       this.plt.ready().then(() => {
             this.map = navParams.get('map');
-            this.shop_id =  this.navParams.get('shop_id');  
-                
+                    
         });
   }
+  
+  ngOnInit(){
+        this.shop_id =  this.navParams.get('shop_id');
+        this.getStore();
+    }
   
   ionViewWillEnter(){
         
@@ -60,10 +64,6 @@ export class ShopModalPage {
         });
         
     }
-    
-    ngOnInit(){
-        this.getStore();
-    }
   
    close() {
     document.getElementById('content_start').removeAttribute('class');//className = 'modalContentEnd';
@@ -75,15 +75,15 @@ export class ShopModalPage {
   
   openInMap(){
       if (this.plt.is('ios'))
-          window.open('maps://?q=' + this.store.nome + '&saddr=' + this.store.latitudine + ',' + this.store.longitudine + '&daddr=' + this.store.latitudine + ',' + this.store.longitudine, '_system');  
+          window.open('maps://?q=' + this.shop.nome + '&saddr=' + this.shop.latitudine + ',' + this.shop.longitudine + '&daddr=' + this.shop.latitudine + ',' + this.shop.longitudine, '_system');  
       else if (this.plt.is('android'))
-        window.open('geo://'+ this.store.latitudine +','+ this.store.longitudine +'?q='+ this.store.latitudine +','+ this.store.longitudine +'('+ this.store.nome +')', '_system');
+        window.open('geo://'+ this.shop.latitudine +','+ this.shop.longitudine +'?q='+ this.shop.latitudine +','+ this.shop.longitudine +'('+ this.shop.nome +')', '_system');
   }
   
   getStore() {
         this.sStore.getStore(this.shop_id)
             .then((data: Store)=>{
-                this.store = data;
+                this.shop = data;
             })
             .catch(()=>{
                 console.log("errore Shop: non sono riuscito a caricare le Info");
@@ -91,7 +91,7 @@ export class ShopModalPage {
   }
   
   openProducts(){
-      this.navCtrl.push(ProductsListPage, {store_id: this.store.id, store_name: this.store.nome});
+      this.navCtrl.push(ProductsListPage, {store_id: this.shop.id, store_name: this.shop.nome});
   }
 
 }

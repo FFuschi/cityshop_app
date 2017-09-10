@@ -74,8 +74,8 @@ export class ProductsListPage {
          
     }
 
-    openProduct() {
-        this.navCtrl.push(ProdottoPage);
+    openProduct(id: Number) {
+        this.navCtrl.push(ProdottoPage, {product_id: id});
     }
 
 }

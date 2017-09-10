@@ -21,6 +21,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ProductsListPage } from '../pages/products-list/products-list';
+import { ProdottoPage } from '../pages/prodotto/prodotto';
 
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
@@ -38,7 +39,8 @@ import { StoreProvider } from '../providers/store/store';
     LoginPage,
     RegistrazionePage,
     TutorialPage,
-    ProductsListPage
+    ProductsListPage,
+    ProdottoPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import { StoreProvider } from '../providers/store/store';
     LoginPage,
     RegistrazionePage,
     TutorialPage,
-    ProductsListPage
+    ProductsListPage,
+    ProdottoPage
   ],
   providers: [
     SplashScreen,
