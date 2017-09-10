@@ -12,6 +12,13 @@ export const URL = {
         UPDATE: "users/"
     },
     
+    STORES: {
+        ALLSTORE: "stores/",
+        STORE: "store/",
+        ALLPRODUCT: "products/",
+        PRODUCT: "product/"
+    },
+    
 }
 
 export const STORAGE_KEYS = {

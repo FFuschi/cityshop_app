@@ -23,9 +23,13 @@ import { ProfilePage } from '../profile/profile';
 
 //Models
 import {User} from '../../models/user.model';
+import {Store} from '../../models/store.model';
 
 //Providers
 import {AccountProvider} from '../../providers/account/account';
+
+//Providers
+import {StoreProvider} from '../../providers/store/store';
 
 
 @Component({
@@ -34,8 +38,7 @@ import {AccountProvider} from '../../providers/account/account';
 })
 export class HomePage {
     
-    firstname: String = "";
-    image: String = "";
+    user: User;
     map: GoogleMap;
     
     constructor(
@@ -47,12 +50,16 @@ export class HomePage {
         public popoverCtrl: PopoverController,  
         public modalCtrl: ModalController,
         public sAccount: AccountProvider, 
+        public sStore: StoreProvider
         ) {
         
     }
     
-    ionViewDidEnter(){
-        
+    ngOnInit(){
+        this.getUser();
+    }
+    
+    ionViewWillEnter(){
         this.plt.ready().then(() => {
             
             this.statusBar.show();
@@ -63,7 +70,13 @@ export class HomePage {
             // set status bar to white
             this.statusBar.backgroundColorByHexString('#7b7b7b');
             
-            this.getUser();
+        });
+    }
+    
+    ionViewDidEnter(){
+        
+        this.plt.ready().then(() => {
+            
             this.loadMap();
             
         });
@@ -71,13 +84,47 @@ export class HomePage {
     }
     
     getUser() {
-        var user = this.sAccount.getUser();
-        this.firstname = user.firstname;
-        this.image = user.image;
+        this.user = this.sAccount.getUser();
             
     }
     
-    
+    getStores(latitude: number, longitude: number){
+        if (this.user != null){
+            
+            var token: String = this.user.token;
+            this.sStore.getAllStore(token, latitude , longitude)
+                .then((data: Array<Store>)=>{
+                    for(let n of data){
+                        
+                        let markerOptions: MarkerOptions = {
+                            position: new LatLng(n.latitudine, n.longitudine),
+                            disableAutoPan: true
+                        };
+                        
+                        this.map.addMarker(markerOptions)
+                            .then((marker: Marker) => {
+                                marker.setIcon({
+                                    url: 'www/assets/images/marker.png',
+                                    size: {
+                                        width: 40,
+                                        height: 40
+                                     }
+                                })
+
+                                marker.addEventListener(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+                                    this.shop_info(n.id);
+                                });
+                        });
+                    }
+                        
+                })
+                .catch(() => {
+                    console.log("errore Mappa: non sono riuscito a Caricare i Marker");
+                });     
+         
+        }
+        
+    }
 
     loadMap() {
      // make sure to create following structure in your view.html file
@@ -100,49 +147,9 @@ export class HomePage {
            // create LatLng object
            let bearing = 0;
            let zoom = 15;
-           let location;
-           let ionic: LatLng = new LatLng(42.5802706, 13.9850773);
-           let fontana: LatLng = new LatLng(42.3538387,13.4013294,);
-            
-             // create new marker
-            let markerOptions: MarkerOptions = {
-              position: ionic,
-              disableAutoPan: true
-            };
-
-            this.map.addMarker(markerOptions)
-              .then((marker: Marker) => {
-                  marker.setIcon({
-                      url: 'www/assets/images/marker.png',
-                      size: {
-                          width: 40,
-                          height: 40
-                       }
-                  })
-                  
-                  marker.addEventListener(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-                      var shop_id = 1;
-                      this.shop_info(shop_id);
-                  });
-            });
-            
-             // create new marker
-            let marker1Options: MarkerOptions = {
-              position: fontana,
-              title: 'Ionic',
-              disableAutoPan: true
-            };
-
-            this.map.addMarker(marker1Options)
-              .then((marker: Marker) => {
-                  marker.setIcon({
-                      url: 'www/assets/images/marker.png',
-                      size: {
-                          width: 40,
-                          height: 40
-                       }
-                  })
-            });
+           let location: LatLng;
+           let start: LatLng = new LatLng(0, 0);
+           //let ionic: LatLng = new LatLng(42.5802706, 13.9850773);
             
             this.map.setOptions({
                 'controls': {
@@ -172,7 +179,7 @@ export class HomePage {
              // data.coords.longitude
                 
                 location = new LatLng(data.coords.latitude, data.coords.longitude);
-
+                
                 this.map.animateCamera({
                     target: location,
                     zoom: zoom,
@@ -180,6 +187,15 @@ export class HomePage {
                     bearing: bearing,
                     duration: 500
                 });
+                
+                if (start.lat - data.coords.latitude > 0.02 || start.lat - data.coords.latitude < -0.02 ){
+                    
+                    start = location;
+                    
+                    this.map.clear();
+                    this.getStores(data.coords.latitude, data.coords.longitude);
+                    
+                }
            
             });
             
@@ -226,7 +242,7 @@ export class HomePage {
     
     shop_info(shop_id){
        this.map.setClickable(false);
-        let infoModal = this.modalCtrl.create(ShopModalPage, {map:this.map, shop_id:shop_id});
+        let infoModal = this.modalCtrl.create(ShopModalPage, {map: this.map, shop_id: shop_id});
         infoModal.present();
 
         infoModal.onWillDismiss(()=>{

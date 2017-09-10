@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -20,15 +21,24 @@ export class SplashPage {
     
   splash = true; //splashscreen
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private statusBar: StatusBar) {
+  constructor(
+      public navCtrl: NavController,
+      public plt: Platform, 
+      public navParams: NavParams, 
+      private statusBar: StatusBar
+      ) {
       
       this.statusBar.hide();
       
   }
 
   ionViewDidLoad() {
-    setTimeout(() => this.splash = false, 5000);
-    setTimeout(() => this.navCtrl.push(TutorialPage), 5000);
+      this.plt.ready().then(() => {
+            
+            setTimeout(() => this.splash = false, 5000);
+            setTimeout(() => this.navCtrl.push(TutorialPage), 5000);
+            
+        });
   }
 
   onLink() {

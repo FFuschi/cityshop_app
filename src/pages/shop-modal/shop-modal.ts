@@ -2,10 +2,17 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import {
  GoogleMap
 } from '@ionic-native/google-maps';
+
+import { ProductsListPage } from '../products-list/products-list';
+
+import {Store} from '../../models/store.model';
+
+import {StoreProvider} from '../../providers/store/store';
 
 /**
  * Generated class for the ShopModalPage page.
@@ -21,14 +28,42 @@ import {
 export class ShopModalPage {
     
     map: GoogleMap;
-    shop_id: any;
+    shop_id: Number;
+    store: Store;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public plt: Platform) {
+  constructor(
+      public navCtrl: NavController, 
+      public navParams: NavParams, 
+      public viewCtrl: ViewController,
+      public statusBar: StatusBar,
+       public plt: Platform, 
+        public sStore: StoreProvider
+       ) {
       this.plt.ready().then(() => {
-            this.map = navParams.get('map');  
-            this.shop_id =  navParams.get('shop_id');    
+            this.map = navParams.get('map');
+            this.shop_id =  this.navParams.get('shop_id');  
+                
         });
   }
+  
+  ionViewWillEnter(){
+        
+        this.plt.ready().then(() => {
+            this.statusBar.show();
+            
+            // let status bar overlay webview
+            this.statusBar.overlaysWebView(true);
+
+            // set status bar to white
+            this.statusBar.backgroundColorByHexString('#7b7b7b');
+            
+        });
+        
+    }
+    
+    ngOnInit(){
+        this.getStore();
+    }
   
    close() {
     document.getElementById('content_start').removeAttribute('class');//className = 'modalContentEnd';
@@ -40,9 +75,23 @@ export class ShopModalPage {
   
   openInMap(){
       if (this.plt.is('ios'))
-        window.open('maps://?q=Test&saddr=42.5802706,13.9850773&daddr=42.5802706,13.9850773', '_system');  
+          window.open('maps://?q=' + this.store.nome + '&saddr=' + this.store.latitudine + ',' + this.store.longitudine + '&daddr=' + this.store.latitudine + ',' + this.store.longitudine, '_system');  
       else if (this.plt.is('android'))
-        window.open('geo://42.5802706,13.9850773?q=42.5802706,13.9850773(Test)', '_system');
+        window.open('geo://'+ this.store.latitudine +','+ this.store.longitudine +'?q='+ this.store.latitudine +','+ this.store.longitudine +'('+ this.store.nome +')', '_system');
+  }
+  
+  getStore() {
+        this.sStore.getStore(this.shop_id)
+            .then((data: Store)=>{
+                this.store = data;
+            })
+            .catch(()=>{
+                console.log("errore Shop: non sono riuscito a caricare le Info");
+            }); 
+  }
+  
+  openProducts(){
+      this.navCtrl.push(ProductsListPage, {store_id: this.store.id, store_name: this.store.nome});
   }
 
 }

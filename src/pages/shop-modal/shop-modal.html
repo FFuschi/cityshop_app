@@ -19,20 +19,21 @@
                       <ion-row center>
                             <ion-col no-padding no-margin>
 
-                                <img class="img_shop" src="assets/images/avatars/test.png" no-padding no-margin>
+                                <img class="img_shop" src="http://dominiotestprova.altervista.org/image/store/{{ store.foto }}" no-padding no-margin>
                             </ion-col>
                           <ion-col no-padding no-margin>
 
                               <div class="shop_name">
-                                    <h5 text-uppercase no-padding no-margin color="dark">Tezenis</h5>
-                                    <p no-padding no-margin>Pescara Via Salvo, n°5</p>
+                                    <h5 text-uppercase no-padding no-margin color="dark">{{ store.nome }}</h5>
+                                    <p no-padding no-margin>{{ store.address }}</p>
+                                    <p no-padding no-margin>Telefono: <a class="phone" href="tel:{{ store.phone }}">{{ store.phone }}</a></p> 
                               </div>
                            </ion-col>
                       </ion-row>
 
                         <ion-row center class="second_row">
                           <ion-col>
-                              <p no-padding no-margin class="link">Apri Negozio</p>
+                              <p no-padding no-margin class="link" (click)="openProducts()">Apri Negozio</p>
 
                            </ion-col>
                             <ion-col>

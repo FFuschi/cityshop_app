@@ -49,7 +49,7 @@ export class ProfilePage {
       
   }
   
-  ionViewDidEnter(){
+  ionViewWillEnter(){
         
         this.plt.ready().then(() => {
             

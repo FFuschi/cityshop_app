@@ -20,9 +20,11 @@ import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
 import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { ProductsListPage } from '../pages/products-list/products-list';
 
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
+import { StoreProvider } from '../providers/store/store';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     ProfilePage,
     LoginPage,
     RegistrazionePage,
-    TutorialPage
+    TutorialPage,
+    ProductsListPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     ProfilePage,
     LoginPage,
     RegistrazionePage,
-    TutorialPage
+    TutorialPage,
+    ProductsListPage
   ],
   providers: [
     SplashScreen,
@@ -69,7 +73,8 @@ import { UserPersistanceProvider } from '../providers/user-persistance/user-pers
     HttpModule,
     IonicStorageModule,
     AccountProvider,
-    UserPersistanceProvider
+    UserPersistanceProvider,
+    StoreProvider
   ]
 })
 export class AppModule {}
