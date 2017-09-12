@@ -1,24 +1,22 @@
 <ion-content class="home" padding>
-
-  <ion-img class="icon" img src="assets/images/splash.png"></ion-img>
+    <div>
+  <img class="icon" src="assets/images/splash.png">
+    </div>
 
   <ion-list>
 
     <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label floating >Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
   </ion-list>
-
-  <div class="forgotten">
-    Password dimenticata?
-  </div>
+  
   <p>
     <button ion-button block (click)="login()">Login</button>
   </p>

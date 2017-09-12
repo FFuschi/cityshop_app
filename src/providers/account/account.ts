@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import {User} from '../../models/user.model';
+import {UserReg} from '../../models/user.model';
 import {Categoria} from '../../models/categoria.model';
 import {Brand} from '../../models/brand.model';
 
@@ -25,6 +26,7 @@ import {URL_BASE, URL_ORIGINAL, URL} from '../../constants';
 @Injectable()
 export class AccountProvider {
   
+    private _userreg: UserReg = null;
     private _user: User = null;
     private _sUserPersistance: UserPersistanceInterface;
     constructor(
@@ -59,7 +61,7 @@ export class AccountProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.LOGIN, { email, password })
+            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.LOGIN, { "email": email, "password": password })
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -70,6 +72,23 @@ export class AccountProvider {
                         resolve(this._user);
                     } else {
                         reject();
+                    }
+                })
+                .catch((err: Response) => {
+                    reject(`Errore status: ${err.status}`)});
+                });
+    }
+    
+    signup(user: UserReg): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._http.post(URL_BASE + URL.USERS.SIGNUP, user).toPromise()
+                .then((res: Response) => {
+                    const json = res.json();
+                    
+                    if (json.result) {
+                        resolve();
+                    } else {
+                        reject(json.message);
                     }
                 })
                 .catch((err: Response) => reject(`Errore status: ${err.status}`));

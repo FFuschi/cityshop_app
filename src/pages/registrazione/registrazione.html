@@ -21,47 +21,45 @@
     </ion-fab>
   -->
 
-  <div>
-    <ion-fab upper center>
-      <button ion-fab color="primary" (click)="openGallery()">
-        <ion-icon name="images"></ion-icon>
-      </button>
-    </ion-fab>
+  <div style="text-align:center;">
+    <ion-avatar item-start>
+        <ion-img class="icon" width="100px" height="100px" img src="assets/images/avatardefault.png"(click)="openGallery()"></ion-img>
+        <ion-fab>
+            <button ion-fab color="primary"><ion-icon name="camera"></ion-icon></button>
+        </ion-fab>
+    </ion-avatar>
     <img [src]="base64Image" *ngIf="base64Image">
   </div>
-
-  <br />
-  <br />
 
   <!-- FORM DI REGISTRAZIONE-->
   <ion-item>
     <ion-label floating><ion-icon name="contact"></ion-icon> Nome </ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="firstname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating><ion-icon name="contact"></ion-icon> Cognome </ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="lastname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating><ion-icon name="mail"></ion-icon> email </ion-label>
-    <ion-input type="email"></ion-input>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating><ion-icon name="lock"></ion-icon> Password </ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating><ion-icon name="lock"></ion-icon> Conferma Password </ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input type="password" [(ngModel)]="confermapassword"></ion-input>
   </ion-item>
 
   <p>
     <ion-buttons end>
-      <button [navPush]="tutButton" ion-button> Avanti </button>
+      <button ion-button (click)="signup()"> Avanti </button>
     </ion-buttons>
   </p>
 

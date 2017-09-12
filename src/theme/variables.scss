@@ -5,6 +5,19 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+@import "ionic.globals";
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('../../assets/fonts/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+};
+
+* {
+  font-family: 'Lato-Regular';
+}
+
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:

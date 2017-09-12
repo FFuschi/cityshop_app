@@ -4,6 +4,14 @@
  * and open the template in the editor.
  */
 
+export class UserReg {
+    email: string = "";
+    firstname: string = "";
+    lastname: string = "";
+    password: string = "";
+    image: string = "";
+}
+
 export class User {
     
     email: string = "";

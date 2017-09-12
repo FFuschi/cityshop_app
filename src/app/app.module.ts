@@ -24,6 +24,8 @@ import { ProductsListPage } from '../pages/products-list/products-list';
 import { ProdottoPage } from '../pages/prodotto/prodotto';
 import { CategoriesPage } from '../pages/categories/categories';
 import { BrandsPage } from '../pages/brands/brands';
+import { CategoriaRegPage } from '../pages/categoria-reg/categoria-reg';
+import { BrandRegPage } from '../pages/brand-reg/brand-reg';
 
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
@@ -47,7 +49,9 @@ import { BrandProvider } from '../providers/brand/brand';
     ProductsListPage,
     ProdottoPage,
     CategoriesPage,
-    BrandsPage
+    BrandsPage,
+    CategoriaRegPage,
+    BrandRegPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,9 @@ import { BrandProvider } from '../providers/brand/brand';
     ProductsListPage,
     ProdottoPage,
     CategoriesPage,
-    BrandsPage
+    BrandsPage,
+    CategoriaRegPage,
+    BrandRegPage
   ],
   providers: [
     SplashScreen,
