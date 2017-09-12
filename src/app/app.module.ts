@@ -22,11 +22,15 @@ import { RegistrazionePage } from '../pages/registrazione/registrazione';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ProductsListPage } from '../pages/products-list/products-list';
 import { ProdottoPage } from '../pages/prodotto/prodotto';
+import { CategoriesPage } from '../pages/categories/categories';
+import { BrandsPage } from '../pages/brands/brands';
 
 import { AccountProvider } from '../providers/account/account';
 import { UserPersistanceProvider } from '../providers/user-persistance/user-persistance';
 import { StoreProvider } from '../providers/store/store';
 import { ProductProvider } from '../providers/product/product';
+import { CategoryProvider } from '../providers/category/category';
+import { BrandProvider } from '../providers/brand/brand';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { ProductProvider } from '../providers/product/product';
     RegistrazionePage,
     TutorialPage,
     ProductsListPage,
-    ProdottoPage
+    ProdottoPage,
+    CategoriesPage,
+    BrandsPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,9 @@ import { ProductProvider } from '../providers/product/product';
     RegistrazionePage,
     TutorialPage,
     ProductsListPage,
-    ProdottoPage
+    ProdottoPage,
+    CategoriesPage,
+    BrandsPage
   ],
   providers: [
     SplashScreen,
@@ -79,7 +87,9 @@ import { ProductProvider } from '../providers/product/product';
     AccountProvider,
     UserPersistanceProvider,
     StoreProvider,
-    ProductProvider
+    ProductProvider,
+    CategoryProvider,
+    BrandProvider
   ]
 })
 export class AppModule {}

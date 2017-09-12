@@ -3,37 +3,36 @@ import { Http, Response  } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import {Product} from '../../models/product.model';
 import {Categoria} from '../../models/categoria.model';
-import {Brand} from '../../models/brand.model';
 
 //Constants
 import {URL_BASE, URL_ORIGINAL, URL} from '../../constants';
 
 /*
-  Generated class for the ProductProvider provider.
+  Generated class for the CategoryProvider provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class ProductProvider {
+export class CategoryProvider {
 
   constructor(public _http: Http) {
-    console.log('Hello ProductProvider Provider');
   }
-  
-  getAllProducts(id: Number): Promise<Array<Product>> {
+
+    getCategories(): Promise<Array<Categoria>>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.PRODUCTS.ALLPRODUCT, {"id": id})
+            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.ALL, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
-                    if (json.result) {
-                        resolve(json.data);
+                    if (json.result) { 
+                        let result: Array<Categoria> = json.data;
+                        
+                        resolve(result);
                     } else {
                         reject();
                     }
@@ -43,34 +42,12 @@ export class ProductProvider {
                 });
         });
     }
-    
-    getProduct(id: Number): Promise<Product> {
+
+    addUserCategories(token: String, category: Categoria): Promise<Categoria>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.PRODUCTS.PRODUCT, {"id": id})
-                .toPromise()
-                .then((res: Response) => {
-                    const json = res.json();
-                    
-                    if (json.result) {
-                        let product = new Product(json.data);
-                        resolve(product);
-                    } else {
-                        reject();
-                    }
-                })
-                .catch((err: Response) => {
-                    reject(`Errore status: ${err.status}`)
-                });
-        });
-    }
-    
-    getProductCategories(id: Number): Promise<Categoria>{
-        return new Promise((resolve, reject) => {
-            //URL_BASE = conessione tramite proxy;
-            //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.PRODUCTS.CATEGORY, {"id": id})
+            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.ADD + token, {"nome": category.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -89,17 +66,17 @@ export class ProductProvider {
         });
     }
     
-    getProductBrands(id: Number): Promise<Brand>{
+    removeUserCategories(token: String, category: Categoria): Promise<Categoria>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.PRODUCTS.BRAND, {"id": id})
+            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.REMOVE + token, {"nome": category.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
                     if (json.result) { 
-                        let result = new Brand(json.data);
+                        let result = new Categoria(json.data);
                         
                         resolve(result);
                     } else {

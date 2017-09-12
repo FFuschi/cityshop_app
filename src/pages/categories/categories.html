@@ -1,0 +1,27 @@
+<!--
+  Generated template for the CategoriesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>CATEGORIE</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+
+    <ion-item class="item" *ngFor="let item of categories; let i = index;" (click)="updateCategory(i, item)" id="check{{item.nome}}">
+        <div class="categoryImg" item-start>
+            <img style="height: 100%" src="http://dominiotestprova.altervista.org/image/categories/{{item.foto}}">
+         </div>
+        <h2 style="margin-left: 10%">{{item.nome}}</h2>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

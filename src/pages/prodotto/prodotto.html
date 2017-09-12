@@ -27,7 +27,10 @@
 
 <ion-grid>
   <ion-row>
-      <ion-col col-6>Negozio: H&M <br> Categoria: Sport</ion-col>
+      <ion-col col-6 >
+          <p *ngIf="brand!= null">Brand: {{brand.nome}}</p>
+          <p *ngIf="category!= null">Categoria: {{category.nome}}</p>
+      </ion-col>
   </ion-row>
 </ion-grid>﻿
 

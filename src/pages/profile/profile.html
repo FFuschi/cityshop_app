@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Profilo</ion-title>
+  <ion-navbar color="primary">
+    <ion-title class="titolo">PROFILO</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,18 +17,18 @@
     <ion-grid>
         <ion-row center class="img_row">
             <ion-col class="img_col" >
-                <img class="img_profile" src="http://dominiotestprova.altervista.org/image/avatars/{{image}}" center>
+                <img *ngIf="user != null" class="img_profile" src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" center>
             </ion-col>
         
         </ion-row>
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4>{{name}}</h4>
+                <h4 *ngIf="user != null">{{user.firstname}}</h4>
             </ion-col>
             <ion-col >
 
-                <button ion-button icon-only color="dark" clear class="edit_button">
+                <button *ngIf="user != null" ion-button icon-only color="dark" clear class="edit_button" (click)="changeAttribute(user.firstname, 'firstname')">
                     <ion-icon name="md-create"></ion-icon>
                 </button>
             </ion-col>
@@ -36,11 +36,11 @@
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4>{{lastname}}</h4>
+                <h4 *ngIf="user != null">{{user.lastname}}</h4>
             </ion-col>
             <ion-col >
 
-                <button ion-button icon-only color="dark" clear class="edit_button">
+                <button *ngIf="user != null" ion-button icon-only color="dark" clear class="edit_button" (click)="changeAttribute(user.lastname, 'lastname')">
                     <ion-icon name="md-create"></ion-icon>
                 </button>
             </ion-col>
@@ -48,7 +48,7 @@
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4>{{email}}</h4>
+                <h4 *ngIf="user != null">{{user.email}}</h4>
             </ion-col>
             <ion-col >
 
@@ -72,7 +72,7 @@
                 <h4 style="margin-top: 10px">Brands</h4>
             </ion-col>
             <ion-col class="left" col-5>
-                <button ion-button icon-only color="dark" clear>
+                <button ion-button icon-only color="dark" clear (click)="openBrands()">
                     <ion-icon name="md-create"></ion-icon>
                 </button>
             </ion-col>
@@ -80,21 +80,9 @@
         </ion-row>
         
         <ion-row>
-            <ion-col text-center>
+            <ion-col text-center *ngFor="let item of brands">
                 <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
-                </div>
-            </ion-col>
-            <ion-col text-center>
-
-                <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
-                </div>
-            </ion-col>
-            <ion-col text-center>
-
-                <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
+                    <img src="http://dominiotestprova.altervista.org/image/brands/{{item.foto}}" center>
                 </div>
             </ion-col>
         </ion-row>
@@ -105,7 +93,7 @@
                 <h4 style="margin-top: 10px">Categorie</h4>
             </ion-col>
             <ion-col class="left" col-5>
-                <button ion-button icon-only color="dark" clear>
+                <button ion-button icon-only color="dark" clear (click)="openCategories()">
                     <ion-icon name="md-create"></ion-icon>
                 </button>
             </ion-col>
@@ -113,22 +101,10 @@
         </ion-row>
         
         <ion-row>
-            <ion-col text-center>
+            <ion-col *ngFor="let item of categorie">
                 
                 <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
-                </div>
-            </ion-col>
-            <ion-col text-center>
-
-                <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
-                </div>
-            </ion-col>
-            <ion-col text-center>
-
-                <div class="div_image">
-                    <img src="assets/images/avatars/test.png" center>
+                    <img src="http://dominiotestprova.altervista.org/image/categories/{{item.foto}}" center>
                 </div>
             </ion-col>
             
