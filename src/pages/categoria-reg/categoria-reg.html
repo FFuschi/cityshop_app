@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Categorie</ion-title>
   </ion-navbar>
 
@@ -14,16 +14,22 @@
 
 
 <ion-content>
+    
     <ion-list>
 
-    <ion-item class="item" *ngFor="let item of categories; let i = index;" (click)="updateCategory(i, item)" id="check{{item.nome}}">
-        <div class="categoryImg" item-start>
-            <img style="height: 100%" src="http://dominiotestprova.altervista.org/image/categories/{{item.foto}}">
-         </div>
-        <h2 style="margin-left: 10%">{{item.nome}}</h2>
-    </ion-item>
+        <ion-item class="item" *ngFor="let item of categories; let i = index;" (click)="updateCategory(i, item)" id="check{{item.nome}}">
+            <div class="categoryImg" item-start>
+                <img style="height: 100%" src="http://dominiotestprova.altervista.org/image/categories/{{item.foto}}">
+             </div>
+            <h2 style="margin-left: 10%">{{item.nome}}</h2>
+        </ion-item>
 
-  </ion-list>
+    </ion-list>
     
-    <button (click)="next()">Test</button>
+    <p>
+    <ion-buttons end>
+      <button ion-button (click)="next()"> test </button>
+    </ion-buttons>
+    </p>
+    
 </ion-content>

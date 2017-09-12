@@ -5,12 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CategoryProvider} from '../../providers/category/category';
 
 import {Categoria} from '../../models/categoria.model';
-/**
- * Generated class for the CategoriaRegPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-categoria-reg',
@@ -41,6 +36,7 @@ export class CategoriaRegPage {
                 console.log("errore Shop: non sono riuscito a caricare le Info");
             }); 
     }
+    
    updateCategory(index: number, category: Categoria){
         this.check[index]=!this.check[index];
         if(!this.check[index]){

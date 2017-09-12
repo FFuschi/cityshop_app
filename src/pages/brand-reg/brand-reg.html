@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Brands</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <ion-list>
 
     <ion-item class="item" *ngFor="let item of brands; let i = index;" (click)="updateBrand(i, item)" id="check{{item.nome}}">
