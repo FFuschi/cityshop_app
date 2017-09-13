@@ -45,7 +45,8 @@ export const URL = {
 }
 
 export const STORAGE_KEYS = {
-    USER: "cityshop_user"
+    USER: "cityshop_user",
+    ACCESS: "cityshop_access",
 }
 
 

@@ -7,6 +7,7 @@ import { Platform } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TutorialPage } from '../tutorial/tutorial';
 import { AlertController } from 'ionic-angular';
+import { ActionSheetController } from 'ionic-angular';
 
 import { UserReg } from '../../models/user.model';
 import { CategoriaRegPage } from '../categoria-reg/categoria-reg';
@@ -32,6 +33,7 @@ export class RegistrazionePage {
                 private camera: Camera, 
                 public statusBar: StatusBar,
                 public plt: Platform,
+                public actionSheetCtrl: ActionSheetController,
                 public alertCtrl: AlertController) {
     }
     
@@ -51,6 +53,32 @@ export class RegistrazionePage {
         
     }
     
+    presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Seleziona una foto',
+      buttons: [
+        {
+          text: 'Galleria',
+          handler: () => {
+            this.openGallery();
+          }
+        }, {
+          text: 'Fotocamera',
+          handler: () => {
+            this.openCameraG();
+          }
+        }, {
+          text: 'Annulla',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+  
     signup() {
         this._validate();
     }
@@ -93,7 +121,7 @@ export class RegistrazionePage {
         window.open(url);
     }
     
-    public options: CameraOptions = {
+    public openLibrary: CameraOptions = {
         quality: 100,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
@@ -101,8 +129,27 @@ export class RegistrazionePage {
         sourceType: 2
     }
     
+    public openCamera: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        sourceType: 1,
+        cameraDirection: 1
+    }
+    
     openGallery() {
-        this.camera.getPicture(this.options).then((imageData) => {
+        this.camera.getPicture(this.openLibrary).then((imageData) => {
+         // imageData is either a base64 encoded string or a file URI
+         // If it's base64:
+         let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+         // Handle error
+        });
+    };
+    
+    openCameraG() {
+        this.camera.getPicture(this.openCamera).then((imageData) => {
          // imageData is either a base64 encoded string or a file URI
          // If it's base64:
          let base64Image = 'data:image/jpeg;base64,' + imageData;

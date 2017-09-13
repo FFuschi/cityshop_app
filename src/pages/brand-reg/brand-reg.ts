@@ -99,7 +99,7 @@ export class BrandRegPage {
         var aCategory: Array<Categoria> = [];
         var aBrand: Array<Brand> = [];
         var j = 0;
-        for (var i = 0; i < this.categories.length; i++) {
+        for (let i = 0; i < this.categories.length; i++) {
             if (this.categories[i] != null){
                 aCategory[j] = this.categories[i];
                 j++;
@@ -109,7 +109,7 @@ export class BrandRegPage {
         
         j = 0;
         
-        for (var i = 0; i < this.brandsSelector.length; i++) {
+        for (let i = 0; i < this.brandsSelector.length; i++) {
             if (this.brandsSelector[i] != null){
                 aBrand[j] = this.brandsSelector[i];
                 j++;
@@ -119,7 +119,7 @@ export class BrandRegPage {
         
         this.sAccount.signup(this.user, aCategory, aBrand).then(()=>{
             this.sAccount.login(this.user.email, this.user.password).then(()=>{
-                this.navCtrl.push(HomePage);
+                this.navCtrl.setRoot(HomePage);
             });
         });
     }

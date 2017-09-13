@@ -4,13 +4,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
+
+//Providers
+import { AccesspersistanceProvider } from '../../providers/accesspersistance/accesspersistance';
+import { AccountProvider } from '../../providers/account/account';
 
 @Component({
     selector: 'page-tutorial',
     templateUrl: 'tutorial.html'
 })
 export class TutorialPage {
-    loginButton = LoginPage;
+    
     slides = [
         {
             title: "Markers",
@@ -31,15 +36,34 @@ export class TutorialPage {
 
     constructor(public navCtrl: NavController,
                 public plt: Platform,
-                private statusBar: StatusBar
+                private statusBar: StatusBar,
+                public sAccount: AccountProvider,
+                public aPersistance: AccesspersistanceProvider
                 ) {
 
     }
     
+    ionViewDidLoad() {
+      this.plt.ready().then(() => {
+          
+          this.aPersistance.save(true);
+            
+        });
+    }
+  
     ionViewWillEnter(){
         this.statusBar.hide();
     }
-
+    
+    nextpage(){
+        if(!this.sAccount.isLogged()){
+            this.navCtrl.setRoot(LoginPage);
+        }
+        else{
+            this.navCtrl.setRoot(HomePage);
+        }
+    }
+    
     onLink(url: string) {
         window.open(url);
     }

@@ -46,7 +46,7 @@ export class LoginPage {
             this.statusBar.overlaysWebView(true);
 
             // set status bar to white
-            this.statusBar.backgroundColorByHexString('#ff823e');
+            this.statusBar.backgroundColorByHexString('#7b7b7b');
             
         });
         
@@ -61,7 +61,7 @@ export class LoginPage {
         this.sAccount.login(this.email, this.password)
             .then((user: User) => {
                 if (user.email != ""){
-                    this.navCtrl.setRoot(HomePage);
+                    this.navCtrl.setRoot('HomePage');
                     this.navCtrl.push(HomePage);
                 }
                 else {

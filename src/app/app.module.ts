@@ -33,6 +33,7 @@ import { StoreProvider } from '../providers/store/store';
 import { ProductProvider } from '../providers/product/product';
 import { CategoryProvider } from '../providers/category/category';
 import { BrandProvider } from '../providers/brand/brand';
+import { AccesspersistanceProvider } from '../providers/accesspersistance/accesspersistance';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { BrandProvider } from '../providers/brand/brand';
     StoreProvider,
     ProductProvider,
     CategoryProvider,
-    BrandProvider
+    BrandProvider,
+    AccesspersistanceProvider
   ]
 })
 export class AppModule {}
