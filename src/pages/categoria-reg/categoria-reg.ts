@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 //Providers
 import {CategoryProvider} from '../../providers/category/category';
 
 import {Categoria} from '../../models/categoria.model';
+import { UserReg } from '../../models/user.model';
+import { BrandRegPage } from '../brand-reg/brand-reg';
 
 @IonicPage()
 @Component({
@@ -13,11 +16,18 @@ import {Categoria} from '../../models/categoria.model';
 })
 export class CategoriaRegPage {
     
+    user: UserReg = new UserReg;
     categorySelector: Array<Categoria> = [];
     check: boolean[] = [];
     categories: Array<Categoria> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sCategories: CategoryProvider,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public sCategories: CategoryProvider, public plt: Platform) {
+      
+      this.plt.ready().then(() => {  
+            
+            this.user =  this.navParams.get('user'); 
+                
+        });
   }
   
   ngOnInit(){
@@ -52,6 +62,7 @@ export class CategoriaRegPage {
         for(let item of this.categorySelector){
             console.log(item);
         }
+        this.navCtrl.push(BrandRegPage, {user: this.user, categories: this.categorySelector});
     }
     
   ionViewDidLoad() {

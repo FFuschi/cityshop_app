@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 //Providers
-import {BrandProvider} from '../../providers/brand/brand';
+import { BrandProvider } from '../../providers/brand/brand';
+import { AccountProvider } from '../../providers/account/account';
 
-import {Brand} from '../../models/brand.model';
+import { Brand } from '../../models/brand.model';
+import { HomePage } from '../home/home';
+import {Categoria} from '../../models/categoria.model';
+import { UserReg } from '../../models/user.model';
 
 /**
  * Generated class for the BrandRegPage page.
@@ -19,11 +24,24 @@ import {Brand} from '../../models/brand.model';
 })
 export class BrandRegPage {
     
+    categories: Array<Categoria>;
+    user: UserReg = new UserReg;
     brandsSelector: Array<Brand> = [];
     check: boolean[] = [];
     brands: Array<Brand> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sBrand: BrandProvider,) {
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams, 
+      public sBrand: BrandProvider, 
+      public sAccount: AccountProvider, 
+      public plt: Platform) {
+      
+        this.plt.ready().then(() => {  
+              this.categories = this.navParams.get('categories');
+              this.user =  this.navParams.get('user'); 
+
+          });
   }
     
   ngOnInit(){
@@ -58,6 +76,7 @@ export class BrandRegPage {
         for(let item of this.brandsSelector){
             console.log(item);
         }
+        this.sAccount.signup(this.user, this.categories, this.brandsSelector);
     }
     
   ionViewDidLoad() {

@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TutorialPage } from '../tutorial/tutorial';
-import {AlertController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 import { UserReg } from '../../models/user.model';
 import { CategoriaRegPage } from '../categoria-reg/categoria-reg';
@@ -36,12 +36,12 @@ export class RegistrazionePage {
     private _validate() {
             let msg = "";
             
-            if (this.email.trim() === "") {
-                msg = "Inserire un'email";
-            } else if (this.firstname.trim() === "") {
+            if (this.firstname.trim() === "") {
                 msg = "Inserire il nome";
             } else if (this.lastname.trim() === "") {
                 msg = "Inserire il cognome";
+            } else if (this.email.trim() === "") {
+                msg = "Inserire un'email";
             } else if (this.password.trim() === "") {
                 msg = "Inserire la password";
             } else if (this.confermapassword.trim() === "") {
