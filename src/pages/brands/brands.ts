@@ -108,7 +108,7 @@ export class BrandsPage {
             document.getElementById("check" + brand.nome).style.backgroundColor = "white";
             this.sBrand.removeUserBrands(this.token, brand);
         } else {
-        document.getElementById("check" + brand.nome).style.backgroundColor = "rgba(123, 123, 123, 0.3)";
+            document.getElementById("check" + brand.nome).style.backgroundColor = "rgba(123, 123, 123, 0.3)";
             this.sBrand.addUserBrands(this.token, brand);
         }
     }

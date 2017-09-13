@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 
 //Providers
 import {CategoryProvider} from '../../providers/category/category';
@@ -21,7 +22,11 @@ export class CategoriaRegPage {
     check: boolean[] = [];
     categories: Array<Categoria> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public sCategories: CategoryProvider, public plt: Platform) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public sCategories: CategoryProvider, 
+              public statusBar: StatusBar,
+              public plt: Platform) {
       
       this.plt.ready().then(() => {  
             
@@ -29,6 +34,22 @@ export class CategoriaRegPage {
                 
         });
   }
+  
+  ionViewWillEnter(){
+        
+        this.plt.ready().then(() => {
+            
+            this.statusBar.show();
+            
+            // let status bar overlay webview
+            this.statusBar.overlaysWebView(true);
+
+            // set status bar to white
+            this.statusBar.backgroundColorByHexString('#ff823e');
+            
+        });
+        
+    }
   
   ngOnInit(){
       this.getCategories();

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Platform } from 'ionic-angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TutorialPage } from '../tutorial/tutorial';
@@ -26,9 +28,29 @@ export class RegistrazionePage {
     
     
 
-    constructor(public navCtrl: NavController, private camera: Camera, public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, 
+                private camera: Camera, 
+                public statusBar: StatusBar,
+                public plt: Platform,
+                public alertCtrl: AlertController) {
     }
-   
+    
+    ionViewWillEnter(){
+        
+        this.plt.ready().then(() => {
+            
+            this.statusBar.show();
+            
+            // let status bar overlay webview
+            this.statusBar.overlaysWebView(true);
+
+            // set status bar to white
+            this.statusBar.backgroundColorByHexString('#ff823e');
+            
+        });
+        
+    }
+    
     signup() {
         this._validate();
     }

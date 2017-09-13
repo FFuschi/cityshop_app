@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 
 //Providers
 import { BrandProvider } from '../../providers/brand/brand';
@@ -35,6 +36,7 @@ export class BrandRegPage {
       public navParams: NavParams, 
       public sBrand: BrandProvider, 
       public sAccount: AccountProvider, 
+      public statusBar: StatusBar,
       public plt: Platform) {
       
         this.plt.ready().then(() => {  
@@ -43,6 +45,22 @@ export class BrandRegPage {
 
           });
   }
+  
+  ionViewWillEnter(){
+        
+        this.plt.ready().then(() => {
+            
+            this.statusBar.show();
+            
+            // let status bar overlay webview
+            this.statusBar.overlaysWebView(true);
+
+            // set status bar to white
+            this.statusBar.backgroundColorByHexString('#ff823e');
+            
+        });
+        
+    }
     
   ngOnInit(){
       this.getBrands();
@@ -99,7 +117,11 @@ export class BrandRegPage {
             
         }
         
-        this.sAccount.signup(this.user, aCategory, aBrand);
+        this.sAccount.signup(this.user, aCategory, aBrand).then(()=>{
+            this.sAccount.login(this.user.email, this.user.password).then(()=>{
+                this.navCtrl.push(HomePage);
+            });
+        });
     }
     
   ionViewDidLoad() {

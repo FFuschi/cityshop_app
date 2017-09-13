@@ -1,9 +1,11 @@
 ﻿import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Platform } from 'ionic-angular';
+
 import { RegistrazionePage } from '../registrazione/registrazione';
 import { HomePage } from '../home/home';
-import {AlertController } from 'ionic-angular';
 
 //Models
 import {User} from '../../models/user.model';
@@ -24,6 +26,8 @@ export class LoginPage {
   constructor(
       public navCtrl: NavController,
       public sAccount: AccountProvider, 
+      public statusBar: StatusBar,
+      public plt: Platform, 
       public alertCtrl: AlertController
       ) {
     
@@ -31,6 +35,22 @@ export class LoginPage {
     //splashscren
   ionViewDidLoad() {
   }
+  
+  ionViewWillEnter(){
+        
+        this.plt.ready().then(() => {
+            
+            this.statusBar.show();
+            
+            // let status bar overlay webview
+            this.statusBar.overlaysWebView(true);
+
+            // set status bar to white
+            this.statusBar.backgroundColorByHexString('#ff823e');
+            
+        });
+        
+    }
   
   login() {
       this.validate();
@@ -41,6 +61,7 @@ export class LoginPage {
         this.sAccount.login(this.email, this.password)
             .then((user: User) => {
                 if (user.email != ""){
+                    this.navCtrl.setRoot(HomePage);
                     this.navCtrl.push(HomePage);
                 }
                 else {

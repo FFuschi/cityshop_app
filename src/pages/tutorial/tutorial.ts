@@ -1,4 +1,6 @@
 ﻿import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
@@ -27,8 +29,15 @@ export class TutorialPage {
         }
     ];
 
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController,
+                public plt: Platform,
+                private statusBar: StatusBar
+                ) {
 
+    }
+    
+    ionViewWillEnter(){
+        this.statusBar.hide();
     }
 
     onLink(url: string) {
