@@ -6,10 +6,10 @@
 
 export class UserReg {
     email: string = "";
-    firstname: string = "";
-    lastname: string = "";
+    nome: string = "";
+    cognome: string = "";
     password: string = "";
-    image: string = "";
+    foto: string = "";
 }
 
 export class User {

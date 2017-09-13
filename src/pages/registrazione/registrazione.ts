@@ -60,8 +60,9 @@ export class RegistrazionePage {
             } else {
                 this.user.email = this.email;
                 this.user.password = this.password;
-                this.user.firstname = this.firstname;
-                this.user.lastname = this.lastname;
+                this.user.nome = this.firstname;
+                this.user.cognome = this.lastname;
+                this.user.foto = "test.jpg";
                 this.navCtrl.push(CategoriaRegPage, {user: this.user});
             }
     }

@@ -73,10 +73,33 @@ export class BrandRegPage {
     }
     
     next(){
+        
         for(let item of this.brandsSelector){
             console.log(item);
         }
-        this.sAccount.signup(this.user, this.categories, this.brandsSelector);
+        
+        var aCategory: Array<Categoria> = [];
+        var aBrand: Array<Brand> = [];
+        var j = 0;
+        for (var i = 0; i < this.categories.length; i++) {
+            if (this.categories[i] != null){
+                aCategory[j] = this.categories[i];
+                j++;
+            }
+            
+        }
+        
+        j = 0;
+        
+        for (var i = 0; i < this.brandsSelector.length; i++) {
+            if (this.brandsSelector[i] != null){
+                aBrand[j] = this.brandsSelector[i];
+                j++;
+            }
+            
+        }
+        
+        this.sAccount.signup(this.user, aCategory, aBrand);
     }
     
   ionViewDidLoad() {

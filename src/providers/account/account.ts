@@ -81,7 +81,7 @@ export class AccountProvider {
     
     signup(user: UserReg, categories: Array<Categoria>, brands: Array<Brand>): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._http.post(URL_BASE + URL.USERS.SIGNUP, {utente: User, categorie: categories, brands: brands}).toPromise()
+            this._http.post(URL_BASE + URL.USERS.SIGNUP, {utente: user, categorie: categories, brands: brands}).toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
