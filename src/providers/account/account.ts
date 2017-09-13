@@ -26,7 +26,6 @@ import {URL_BASE, URL_ORIGINAL, URL} from '../../constants';
 @Injectable()
 export class AccountProvider {
   
-    private _userreg: UserReg = null;
     private _user: User = null;
     private _sUserPersistance: UserPersistanceInterface;
     constructor(
@@ -36,6 +35,7 @@ export class AccountProvider {
         console.log('Hello Account Provider');
         
         this._sUserPersistance = sUserPers;
+        this.initialize();
     }
     
     initialize(): Promise<any> {
@@ -54,14 +54,14 @@ export class AccountProvider {
     }
 
     isLogged(): boolean {
-        return this._user !== null;
+        return this._user != null;
     }
     
     login(email: string, password: string): Promise<User> {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.LOGIN, { "email": email, "password": password })
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.LOGIN, { "email": email, "password": password })
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -81,7 +81,7 @@ export class AccountProvider {
     
     signup(user: UserReg, categories: Array<Categoria>, brands: Array<Brand>): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._http.post(URL_BASE + URL.USERS.SIGNUP, {user: user, categories: categories, brands: brands}).toPromise()
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.SIGNUP, {user: user, categories: categories, brands: brands}).toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
@@ -97,7 +97,7 @@ export class AccountProvider {
     
     update(userUp: User, token: String): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._http.put(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.UPDATE + token, {"nome": userUp.firstname, "cognome": userUp.lastname}).toPromise()
+            this._http.put(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.UPDATE + token, {"nome": userUp.firstname, "cognome": userUp.lastname}).toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
@@ -112,11 +112,29 @@ export class AccountProvider {
         });
     }
     
+    logout(): Promise<any> { 
+        return new Promise((resolve, reject) => {
+            this._http.get(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.LOGOUT + this._user.token).toPromise()
+                .then((res: Response) => {
+                    const json = res.json();
+                    
+                    if (json.result) {
+                        this._sUserPersistance.remove();
+                        
+                        resolve();
+                    } else {
+                        reject(json.message);
+                    }
+                })
+                .catch((err: Response) => reject(`Errore status: ${err.status}`));
+        });
+    }
+    
     getUserCategories(token: String): Promise<Array<Categoria>>{
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.CATEGORY + token, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.CATEGORY + token, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -139,7 +157,7 @@ export class AccountProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.BRAND + token, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.BRAND + token, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -162,7 +180,7 @@ export class AccountProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.CATEGORYALL + token, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.CATEGORYALL + token, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -185,7 +203,7 @@ export class AccountProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.USERS.BRANDALL + token, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.BRANDALL + token, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();

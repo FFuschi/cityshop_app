@@ -24,7 +24,7 @@ export class CategoryProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.ALL, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.CATEGORIES.ALL, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -47,7 +47,7 @@ export class CategoryProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.ADD + token, {"nome": category.nome})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.CATEGORIES.ADD + token, {"nome": category.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -70,7 +70,7 @@ export class CategoryProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.CATEGORIES.REMOVE + token, {"nome": category.nome})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.CATEGORIES.REMOVE + token, {"nome": category.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();

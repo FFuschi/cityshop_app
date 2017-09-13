@@ -147,9 +147,8 @@ export class HomePage {
            // create LatLng object
            let bearing = 0;
            let zoom = 15;
-           let location: LatLng;
+           let location: LatLng = new LatLng(0, 0);
            let start: LatLng = new LatLng(0, 0);
-           //let ionic: LatLng = new LatLng(42.5802706, 13.9850773);
             
             this.map.setOptions({
                 'controls': {
@@ -165,7 +164,7 @@ export class HomePage {
                 },
                 'preferences': {
                     'zoom': {
-                        'minZoom': 15,
+                        'minZoom': 13,
                         'maxZoom': 18
                     }
                 }
@@ -179,6 +178,7 @@ export class HomePage {
              // data.coords.longitude
                 
                 location = new LatLng(data.coords.latitude, data.coords.longitude);
+                
                 
                 this.map.animateCamera({
                     target: location,

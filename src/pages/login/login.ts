@@ -61,8 +61,7 @@ export class LoginPage {
         this.sAccount.login(this.email, this.password)
             .then((user: User) => {
                 if (user.email != ""){
-                    this.navCtrl.setRoot('HomePage');
-                    this.navCtrl.push(HomePage);
+                    this.navCtrl.setRoot(HomePage);
                 }
                 else {
                     this.alertCtrl.create({

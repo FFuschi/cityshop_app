@@ -24,7 +24,7 @@ export class BrandProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.BRANDS.ALL, {})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.BRANDS.ALL, {})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -47,7 +47,7 @@ export class BrandProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.BRANDS.ADD + token, {"nome": brand.nome})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.BRANDS.ADD + token, {"nome": brand.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();
@@ -70,7 +70,7 @@ export class BrandProvider {
         return new Promise((resolve, reject) => {
             //URL_BASE = conessione tramite proxy;
             //URL_ORIGINAL = connessione diretta;
-            this._http.post(URL_BASE /*URL_ORIGINAL*/ + URL.BRANDS.REMOVE + token, {"nome": brand.nome})
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.BRANDS.REMOVE + token, {"nome": brand.nome})
                 .toPromise()
                 .then((res: Response) => {
                     const json = res.json();

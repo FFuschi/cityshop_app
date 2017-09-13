@@ -46,14 +46,18 @@ export class SplashPage {
             setTimeout(() => this.splash = false, 5000);
             setTimeout(() => {
                 if (!this.sAccount.isLogged()){
-                    this.aPersistance.get().then((data)=>{
-                        console.log(data);
-                        if(data == true){
-                            this.navCtrl.setRoot(LoginPage);
-                        } else {
+                    this.aPersistance.get()
+                        .then((data)=>{
+                            console.log(data);
+                            if(data == true){
+                                this.navCtrl.setRoot(LoginPage);
+                            } else {
+                                this.navCtrl.setRoot(TutorialPage);
+                            }
+                        })
+                        .catch(()=>{
                             this.navCtrl.setRoot(TutorialPage);
-                        }
-                    });
+                        });
                 }
                 else {
                     this.navCtrl.setRoot(HomePage);

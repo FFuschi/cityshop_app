@@ -6,6 +6,12 @@ import { InfoModalPage } from '../info-modal/info-modal';
 
 import { AlertController } from 'ionic-angular';
 
+import { TutorialPage } from '../tutorial/tutorial';
+import { LoginPage } from '../login/login';
+
+//Providers
+import {AccountProvider} from '../../providers/account/account';
+
 import {
  GoogleMap
 } from '@ionic-native/google-maps';
@@ -25,23 +31,24 @@ export class PopoverPage {
     
     map: GoogleMap;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+  constructor(
+      public navCtrl: NavController, 
+      public navParams: NavParams, 
+      public viewCtrl: ViewController, 
+      private sAccount: AccountProvider, 
+      public modalCtrl: ModalController
+      ) {
       this.map = navParams.get('map');
   }
   
-  close() {
-    this.viewCtrl.dismiss();
+  close(){
+      this.viewCtrl.dismiss();
   }
   
   tutorialAlert() {
       this.viewCtrl.onDidDismiss(()=>{
         this.map.setClickable(false);
-        let alert = this.alertCtrl.create({
-          title: 'Low battery',
-          subTitle: '10% of battery remaining',
-          buttons: [{text: 'Cancel', role:'dissmiss', handler : () => { this.map.setClickable(true)}}]
-        });
-        alert.present();
+        this.navCtrl.push(TutorialPage);
       })
   }
   
@@ -55,6 +62,16 @@ export class PopoverPage {
             this.map.setClickable(true)
         });
       });
+  }
+  
+  logout() {
+      this.viewCtrl.onDidDismiss(()=>{
+        this.map.setClickable(false);
+        this.sAccount.logout()
+            .then(()=>{
+                this.navCtrl.setRoot(LoginPage);
+            });
+      })
   }
 
 }
