@@ -40,10 +40,14 @@ export class HomePage {
     
     user: User;
     map: GoogleMap;
+    bearing = 0;
+    zoom = 15;
+    location: LatLng;
+    start: LatLng = new LatLng(0, 0);
     
     constructor(
         public navCtrl: NavController, 
-        public plt: Platform, 
+        public plt: Platform,
         private googleMaps: GoogleMaps, 
         private geolocation: Geolocation, 
         private statusBar: StatusBar, 
@@ -57,6 +61,7 @@ export class HomePage {
     
     ngOnInit(){
         this.getUser();
+        
     }
     
     ionViewWillEnter(){
@@ -78,7 +83,7 @@ export class HomePage {
         this.plt.ready().then(() => {
             
             this.loadMap();
-            
+           
         });
         
     }
@@ -98,18 +103,19 @@ export class HomePage {
                         
                         let markerOptions: MarkerOptions = {
                             position: new LatLng(n.latitudine, n.longitudine),
-                            disableAutoPan: true
-                        };
-                        
-                        this.map.addMarker(markerOptions)
-                            .then((marker: Marker) => {
-                                marker.setIcon({
+                            disableAutoPan: true,
+                            animation: "bounce",
+                            icon: {
                                     url: 'www/assets/images/marker.png',
                                     size: {
                                         width: 40,
                                         height: 40
                                      }
-                                })
+                                }
+                        };
+                        
+                        this.map.addMarker(markerOptions)
+                            .then((marker: Marker) => {
 
                                 marker.addEventListener(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
                                     this.shop_info(n.id);
@@ -134,22 +140,14 @@ export class HomePage {
      // </ion-content>
 
      // create a new map by passing HTMLElement
+     
      let element: HTMLElement = document.getElementById('map_canvas');
-
      this.map = this.googleMaps.create(element);
-
      // listen to MAP_READY event
      // You must wait for this event to fire before adding something to the map or modifying it in anyway
      this.map.one(GoogleMapsEvent.MAP_READY).then(
        () => {
-         // Now you can add elements to the map like the marker
-           
-           // create LatLng object
-           let bearing = 0;
-           let zoom = 15;
-           let location: LatLng = new LatLng(0, 0);
-           let start: LatLng = new LatLng(0, 0);
-            
+         // Now you can add elements to the map like the marker// create LatLng object
             this.map.setOptions({
                 'controls': {
                     'compass': true,
@@ -170,27 +168,61 @@ export class HomePage {
                 }
            });
             
+            this.getPosition();
             
-           let watch = this.geolocation.watchPosition();
+            this.whatchPosition();
+           
+       });
+     
+    }
+    
+    getPosition(){
+        this.geolocation.getCurrentPosition().then((data)=>{
+            
+            this.location = new LatLng(data.coords.latitude, data.coords.longitude);
+            
+            this.map.addEventListener(GoogleMapsEvent.CAMERA_CHANGE).subscribe(() => {
+                this.map.getCameraPosition().then((resp) => {
+                    let controlZoom = resp.zoom;
+                    let controlBearing = resp.bearing;
+                    
+                    if(controlZoom != this.zoom || controlBearing != this.bearing){
+                        this.zoom = controlZoom;
+                        this.bearing = controlBearing;
+                        
+                        this.map.animateCamera({
+                            target: this.location,
+                            zoom: this.zoom,
+                            tilt: 0,
+                            bearing: this.bearing,
+                            duration: 500
+                        });
+                    }
+                });
+            });
+        });
+    }
+    
+    whatchPosition(){
+        let watch = this.geolocation.watchPosition();
            watch.subscribe((data) => {
              // data can be a set of coordinates, or an error (if an error occurred).
              // data.coords.latitude
              // data.coords.longitude
                 
-                location = new LatLng(data.coords.latitude, data.coords.longitude);
-                
+                this.location = new LatLng(data.coords.latitude, data.coords.longitude);
                 
                 this.map.animateCamera({
-                    target: location,
-                    zoom: zoom,
+                    target: this.location,
+                    zoom: this.zoom,
                     tilt: 0,
-                    bearing: bearing,
+                    bearing: this.bearing,
                     duration: 500
                 });
                 
-                if (start.lat - data.coords.latitude > 0.02 || start.lat - data.coords.latitude < -0.02 ){
+                if (this.start.lat - data.coords.latitude > 0.02 || this.start.lat - data.coords.latitude < -0.02 ){
                     
-                    start = location;
+                    this.start = this.location;
                     
                     this.map.clear();
                     this.getStores(data.coords.latitude, data.coords.longitude);
@@ -198,29 +230,6 @@ export class HomePage {
                 }
            
             });
-            
-            this.map.addEventListener(GoogleMapsEvent.CAMERA_CHANGE).subscribe(() => {
-                this.map.getCameraPosition().then((resp) => {
-                    let controlZoom = resp.zoom;
-                    let controlBearing = resp.bearing;
-                    
-                    if(controlZoom != zoom || controlBearing != bearing){
-                        zoom = controlZoom;
-                        bearing = controlBearing;
-                        
-                        this.map.animateCamera({
-                            target: location,
-                            zoom: zoom,
-                            tilt: 0,
-                            bearing: bearing,
-                            duration: 500
-                        });
-                    }
-                });
-            });
-           
-       });
-     
     }
     
     presentPopover(myEvent) {

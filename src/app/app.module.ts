@@ -9,6 +9,9 @@ import { AppVersion } from '@ionic-native/app-version';
 import {HttpModule} from '@angular/http';
 import {IonicStorageModule} from '@ionic/storage';
 import { Camera} from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
 
 import { MyApp } from './app.component';
 import { SplashPage } from '../pages/splash/splash';
@@ -97,7 +100,11 @@ import { AccesspersistanceProvider } from '../providers/accesspersistance/access
     ProductProvider,
     CategoryProvider,
     BrandProvider,
-    AccesspersistanceProvider
+    AccesspersistanceProvider,
+    File,
+    FileTransfer,
+    FileTransferObject,
+    FilePath
   ]
 })
 export class AppModule {}

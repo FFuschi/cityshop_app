@@ -14,6 +14,7 @@ export const URL = {
         BRAND: "brand/",
         CATEGORYALL: "category/all/",
         BRANDALL: "brand/all/",
+        EXIST: "control/"
     },
     
     STORES: {

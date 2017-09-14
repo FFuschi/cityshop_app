@@ -97,7 +97,7 @@ export class AccountProvider {
     
     update(userUp: User, token: String): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._http.put(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.UPDATE + token, {"nome": userUp.firstname, "cognome": userUp.lastname}).toPromise()
+            this._http.put(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.UPDATE + token, {"nome": userUp.firstname, "cognome": userUp.lastname, "foto": userUp.image}).toPromise()
                 .then((res: Response) => {
                     const json = res.json();
                     
@@ -127,6 +127,27 @@ export class AccountProvider {
                     }
                 })
                 .catch((err: Response) => reject(`Errore status: ${err.status}`));
+        });
+    }
+    
+    userExsist(email: String): Promise<boolean>{
+        return new Promise((resolve, reject) => {
+            //URL_BASE = conessione tramite proxy;
+            //URL_ORIGINAL = connessione diretta;
+            this._http.post(/*URL_BASE*/ URL_ORIGINAL + URL.USERS.EXIST, {"email": email})
+                .toPromise()
+                .then((res: Response) => {
+                    const json = res.json();
+                    
+                    if (json.result) {                    
+                        resolve(json.data);
+                    } else {
+                        reject(json.message);
+                    }
+                })
+                .catch((err: Response) => {
+                    reject(`Errore status: ${err.status}`)
+                });
         });
     }
     

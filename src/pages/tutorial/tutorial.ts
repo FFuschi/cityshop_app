@@ -60,7 +60,7 @@ export class TutorialPage {
             this.navCtrl.setRoot(LoginPage);
         }
         else{
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomePage); 
         }
     }
     

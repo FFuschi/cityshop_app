@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { InfoModalPage } from '../info-modal/info-modal';
-
-import { AlertController } from 'ionic-angular';
 
 import { TutorialPage } from '../tutorial/tutorial';
 import { LoginPage } from '../login/login';
@@ -30,13 +28,15 @@ import {
 export class PopoverPage {
     
     map: GoogleMap;
+    home_index: number;
 
   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams, 
       public viewCtrl: ViewController, 
       private sAccount: AccountProvider, 
-      public modalCtrl: ModalController
+      public modalCtrl: ModalController,
+      public loading: LoadingController
       ) {
       this.map = navParams.get('map');
   }
@@ -65,11 +65,18 @@ export class PopoverPage {
   }
   
   logout() {
+      let loading = this.loading.create({
+        content: 'Attendi...'
+      });
+      
+      loading.present();
+      
       this.viewCtrl.onDidDismiss(()=>{
         this.map.setClickable(false);
         this.sAccount.logout()
             .then(()=>{
                 this.navCtrl.setRoot(LoginPage);
+                loading.dismiss();
             });
       })
   }

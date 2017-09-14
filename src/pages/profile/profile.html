@@ -17,7 +17,7 @@
     <ion-grid>
         <ion-row center class="img_row">
             <ion-col class="img_col" >
-                <img *ngIf="user != null" class="img_profile" src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" center>
+                <img *ngIf="user != null" class="img_profile" src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" center (click)="presentActionSheet()"> 
             </ion-col>
         
         </ion-row>
@@ -54,18 +54,7 @@
 
             </ion-col>
         </ion-row>
-        <ion-row center class="text_row">
-            <ion-col class="text_col">
-
-                <h4>Password</h4>
-            </ion-col>
-            <ion-col >
-
-                <button ion-button icon-only color="dark" clear class="edit_button">
-                    <ion-icon name="md-create"></ion-icon>
-                </button>
-            </ion-col>
-        </ion-row>
+        
         <ion-row margin>
             <ion-col class="right" col-7>
 
