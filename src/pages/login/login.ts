@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Platform } from 'ionic-angular';
@@ -28,6 +28,7 @@ export class LoginPage {
       public sAccount: AccountProvider, 
       public statusBar: StatusBar,
       public plt: Platform, 
+      public loadingCtrl: LoadingController,
       public alertCtrl: AlertController
       ) {
     
@@ -58,18 +59,24 @@ export class LoginPage {
     }
     
     enterUser() {
+        
+        const loading = this.loadingCtrl.create({ content: "Attendere..." });
+        loading.present();
         this.sAccount.login(this.email, this.password)
             .then((user: User) => {
                 if (user.email != ""){
-                    this.navCtrl.setRoot(HomePage);
+                    loading.dismiss().then(() => {
+                        this.navCtrl.setRoot(HomePage);
+                    });
                 }
                 else {
-                    this.alertCtrl.create({
-                    title: "alert",
-                    message: "Dati non corretti o inesistenti",
-                    buttons: ['Confirm']
-                }).present();
-
+                    loading.dismiss().then(() => {
+                        this.alertCtrl.create({
+                            title: "Errore di registrazione",
+                            message: "Dati non corretti o inesistenti",
+                            buttons: ['Confirm']
+                        }).present();
+                    });
                 }
             })
             .catch(() => {
@@ -85,9 +92,9 @@ export class LoginPage {
     private validate() {
             let msg = "";
             if (this.email.trim() === "") {
-                msg = "Inserire l'email";
+                msg = "Per favore inserisci un'email valida";
             } else if (this.password.trim() === "") {
-                msg = "Inserire la password dell'account";
+                msg = "Per favore inserire una password";
             }
             
             if (msg !== "") {

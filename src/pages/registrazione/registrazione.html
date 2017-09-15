@@ -13,22 +13,13 @@
 <!-- IMPLEMENTAZIONE CAMERA -->
 <ion-content class="registrazione" padding>
 
-  <!-- Camera
-    <ion-fab bottom right>
-      <button ion-fab (click)="takePic()">
-        <ion-icon name="camera"></ion-icon>
-      </button>
-    </ion-fab>
-  -->
-
   <div style="text-align:center;">
     <ion-avatar item-start>
-        <img src="assets/images/avatardefault.png"(click)="presentActionSheet()">
+        <img src="{{lastImage}}"(click)="presentActionSheet()">
         <ion-fab>
-            <button ion-fab color="primary"><ion-icon name="camera"></ion-icon></button>
+            <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
         </ion-fab>
     </ion-avatar>
-    <img [src]="base64Image" *ngIf="base64Image">
   </div>
 
   <!-- FORM DI REGISTRAZIONE-->
@@ -62,5 +53,5 @@
       <button ion-button (click)="signup()"> Avanti </button>
     </ion-buttons>
   </p>
-
+  
 </ion-content>

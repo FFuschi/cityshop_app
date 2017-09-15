@@ -1,13 +1,11 @@
 <ion-content class="home" padding>
     <div>
-  <img class="icon" src="assets/images/splash.png">
+        <img class="icon" src="assets/images/splash.png">
     </div>
-
-  <ion-list>
 
     <ion-item>
       <ion-label floating><ion-icon name="mail"></ion-icon> Email </ion-label>
-      <ion-input type="text" [(ngModel)]="email"></ion-input>
+      <ion-input type="text" [(ngModel)]="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -15,8 +13,6 @@
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
-  </ion-list>
-  
   <p>
     <button ion-button block (click)="login()">Login</button>
   </p>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -36,7 +36,9 @@ export class BrandRegPage {
       public navParams: NavParams, 
       public sBrand: BrandProvider, 
       public sAccount: AccountProvider, 
+      public loadingCtrl: LoadingController,
       public statusBar: StatusBar,
+      
       public plt: Platform) {
       
         this.plt.ready().then(() => {  
@@ -92,6 +94,9 @@ export class BrandRegPage {
     
     next(){
         
+        const loading = this.loadingCtrl.create({content: "Attendere..."});
+        loading.present();
+        
         for(let item of this.brandsSelector){
             console.log(item);
         }
@@ -104,7 +109,6 @@ export class BrandRegPage {
                 aCategory[j] = this.categories[i];
                 j++;
             }
-            
         }
         
         j = 0;
@@ -114,12 +118,13 @@ export class BrandRegPage {
                 aBrand[j] = this.brandsSelector[i];
                 j++;
             }
-            
         }
         
         this.sAccount.signup(this.user, aCategory, aBrand).then(()=>{
             this.sAccount.login(this.user.email, this.user.password).then(()=>{
-                this.navCtrl.setRoot(HomePage);
+                loading.dismiss().then(() => {
+                    this.navCtrl.setRoot(HomePage);
+                });
             });
         });
     }
