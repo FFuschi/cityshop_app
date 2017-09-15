@@ -1,49 +1,84 @@
 {
-    "APP_NAME": "Todo List",
+    "APP_NAME": "CityShop",
     
     "OK": "ok",
     "SI": "si",
     "NO": "no",
     
-    "BENTORNATO": "Bentornato",
-    "HOME": "Home",
-    "PROFILE": "Profilo",
+    //Brand-reg
+    "BRANDS": "Brands",
+    "SELECT": "Seleziona",
+    "FINISH": "Fine",
+    "WAIT": "Attendere...",
+    
+    //Categoria-reg
+    "CATEGORIES": "Categorie",
+    "NEXT": "Avanti",
+    
+    //Home
+    "WELCOME": "Bentornato",
+    
+    //Info
+    "INFO": "Info",
+    "VERSION": "Versione",
+    "ARR": "Tutti i diritti riservati",
+    
+    //Login
+    "LOGIN": "Login",
     "USERNAME": "Username",
     "PASSWORD": "Password",
+    "SIGNUP": "Registrati",
+    "ERROROF": "Errore di",
+    "LOGINERROR": "Dati non corretti o inesistenti",
+    "DBERROR": "Problema di connessione con il database",
+    "VALIDEMAIL": "Per favore inseririsci un'email valida",
+    "VALIDPASS": "Per favore inserisci una password",
+    
+    //Popover
+    "TUTORIAL": "Tutorial",
+    "LOGOUT": "Logout",
+    
+    //Product
+    "CATEGORY": "Categoria",
+    "BRAND": "Brand",
+    "DESCRIPTION": "Descrizione",
+    
+    //Profile
+    "PROFILE": "Profilo",
+    "CANCEL": "Annulla",
+    "SAVE": "Salva",
+    "IMAGE": "Immagine",
+    "PHOTO": "Foto",
+    "GALLERY": "Galleria",
+    "ERROR": "Errore",
+    
+    //Registrazione
+    "REGISTER": "Registrati",
     "EMAIL": "Email",
     "FIRSTNAME": "Nome",
     "LASTNAME": "Cognome",
-    "LANGUAGE": "Lingua",
+    "CONFIRM": "Conferma",
+    "PHOTOSELECT": "Seleziona una foto",
+    "ERRORNAME": "Inserire il nome",
+    "ERRORSURNAME": "Inserire il cognome",
+    "ERROREMAIL": "Inserire l'email",
+    "ERRORPASSWORD": "Inserire la password",
+    "ERRORMATCH": "Le password inserite non corrispondono",
+    "ERRORREG": "Errore di registrazione",
+    "ALERT": "Attenzione",
+    "USERREG": "Utente già esistente",
     
-    "DELETE": "Elimina",
-    "EDIT": "Modifica",
-    "CANCEL": "Annulla",
-    "ADD": "Aggiungi",
-    "SAVE": "Salva",
+    //Shop modal
+    "OPENSHOP": "Apri Negozio",
+    "OPENMAPS": "Apri Maps",
     
-    "TASKS": "Tasks",
-    "TASKS_COMPLETED": "Tasks Completati",
-    "NEW_TASK": "Nuovo Task",
-    "EDIT_TASK": "Modifica Task",
-    
-    "LOGIN": "Login",
-    "SIGNUP": "Registrazione",
-    "BTN_SIGNUP": "Registrati",
-    
-    
-    "LOADING_WAITING": "Attendere...",
-    
-    "CONFIRM_LOGUOT": "Sei sicuro di voler effettuare il logout?",
-    
-    "TEXT_NEW_ACCOUNT": "Registra un nuovo account.",
-    "TEXT_SIGNUP_SUCCESS": "Registrazione avvenuta con successo, ora effettua il login.",
-    
-    "WARNING_LOGIN_USERNAME_EMPTY": "Inserisci l'username del tuo account TodoList.",
-    "WARNING_LOGIN_PASSWORD_EMPTY": "Inserisci la password.",
-    "WARNING_SIGNUP_USERNAME_EMPTY": "Inserisci l'username.",
-    "WARNING_SIGNUP_EMAIL_EMPTY": "Inserisci l'email.",
-    "WARNING_SIGNUP_PASSWORD_EMPTY": "Inserisci la password.",
-    
-    "ERROR_LOGIN_USERNAME_PASSWORD": "Username o password errati.",
-    "ERROR_PROFILE_SAVE": "Non è stato possibile salvare il tuo profilo."
-} 
+    //Tutorial
+    "SKIP": "Salta",
+    "START": "Iniziamo!",
+    "CONTINUE": "Continua",
+    "MARKERS": "Markers",
+    "TUT1": "Tappando in uno dei marker intorno a te potrai visualizzare le informazioni del negozio che vende prodotti di tuo interesse.",
+    "TUT2": "Per accedere al tuo profilo tappa sull'immagine del tuo profilo!",
+    "MODPREF": "Modifica le tue preferenze",
+    "TUT3": "Puoi modificare le tue preferenze di brands e categorie all'interno del tuo profilo tappando nelle zone sopra descritte."
+}

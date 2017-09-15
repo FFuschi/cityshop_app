@@ -207,6 +207,8 @@ export class RegistrazionePage {
                 msg = "Inserire il cognome";
             } else if (this.email.trim() === "") {
                 msg = "Inserire un'email";
+            } else if (this.validateEmail(this.email) == false){
+                msg = "Inserire un'email valida";
             } else if (this.password.trim() === "") {
                 msg = "Inserire la password";
             } else if (this.confermapassword.trim() === "") {
@@ -249,6 +251,10 @@ export class RegistrazionePage {
     onLink(url: string) {
         window.open(url);
     }
-
+    
+    public validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
 }
 

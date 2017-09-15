@@ -1,49 +1,84 @@
 {
-    "APP_NAME": "Todo List",
+    "APP_NAME": "CityShop",
     
     "OK": "ok",
     "SI": "yes",
     "NO": "no",
     
-    "BENTORNATO": "Welcome back",
-    "HOME": "Home",
-    "PROFILE": "Profile",
+    //Brand-reg
+    "BRANDS": "Brands",
+    "SELECT": "Select",
+    "FINISH": "Finish",
+    "WAIT": "Attendere...",
+    
+    //Categories-reg
+    "CATEGORIES": "Categories",
+    "NEXT": "Next",
+    
+    //Home
+    "WELCOME": "Bentornato",
+    
+    //Info
+    "INFO": "Info",
+    "VERSION": "Versione",
+    "ARR": "All rights reserved",
+    
+    //Login
+    "LOGIN": "Signin",
     "USERNAME": "Username",
     "PASSWORD": "Password",
-    "EMAIL": "Email",
-    "FIRSTNAME": "Firstname",
-    "LASTNAME": "Lastname",
-    "LANGUAGE": "Language",
-    
-    "DELETE": "Delete",
-    "EDIT": "Edit",
-    "CANCEL": "Cancel",
-    "ADD": "Add",
-    "SAVE": "Save",
-    
-    "TASKS": "Tasks",
-    "TASKS_COMPLETED": "Tasks Completed",
-    "NEW_TASK": "New Task",
-    "EDIT_TASK": "Edit Task",
-    
-    "LOGIN": "Login",
     "SIGNUP": "Signup",
-    "BTN_SIGNUP": "Signup",
+    "ERROROF": "Error of",
+    "LOGINERROR": "Incorrect or non-existent data",
+    "DBERROR": "Database connection error",
+    "VALIDEMAIL": "Please insert a valid email",
+    "VALIDPASS": "Please insert password",
     
+    //Popover
+    "TUTORIAL": "Tutorial",
+    "LOGOUT": "Logout",
     
-    "LOADING_WAITING": "Wait a moment...",
+    //Product
+    "CATEGORY": "Category",
+    "BRAND": "Brand",
+    "DESCRIPTION": "Description",
     
-    "CONFIRM_LOGUOT": "Are you sure you want to log out?",
+    //Profile
+    "PROFILE": "Profile",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "IMAGE": "Image",
+    "PHOTO": "Photo",
+    "GALLERY": "Gallery",
+    "ERROR": "Error",
     
-    "TEXT_NEW_ACCOUNT": "Register a new account.",
-    "TEXT_SIGNUP_SUCCESS": "Signup successfully, login now.",
+    //Registrazione
+    "REGISTER": "Signup",
+    "EMAIL": "Email",
+    "FIRSTNAME": "First name",
+    "LASTNAME": "Last name",
+    "CONFIRM": "Confirm",
+    "PHOTOSELECT": "Select a photo",
+    "ERRORNAME": "Insert your first name",
+    "ERRORSURNAME": "Insert your last name",
+    "ERROREMAIL": "Insert your email",
+    "ERRORPASSWORD": "Insert your password",
+    "ERRORMATCH": "Passowrd doesn't match",
+    "ERRORREG": "Signup error",
+    "ALERT": "Alert",
+    "USERREG": "User already exists",
     
-    "WARNING_LOGIN_USERNAME_EMPTY": "Enter the username of your TodoList account.",
-    "WARNING_LOGIN_PASSWORD_EMPTY": "Enter the password.",
-    "WARNING_SIGNUP_USERNAME_EMPTY": "Enter the username.",
-    "WARNING_SIGNUP_EMAIL_EMPTY": "Enter the email.",
-    "WARNING_SIGNUP_PASSWORD_EMPTY": "Enter the password.",
+    //Shop modal
+    "OPENSHOP": "Open Shop",
+    "OPENMAPS": "Open Maps",
     
-    "ERROR_LOGIN_USERNAME_PASSWORD": "Incorrect username or passord",
-    "ERROR_PROFILE_SAVE": "You could not save your profile."
+    //Tutorial
+    "SKIP": "Skip",
+    "START": "Let's start!",
+    "CONTINUE": "Continue",
+    "MARKERS": "Markers",
+    "TUT1": "By tapping on one of the markers near you, you will be able to see the informations of the shops that sell products of your interest.",
+    "TUT2": "To access your profile tap on your profile image!",
+    "MODPREF": "Modify your preferences",
+    "TUT3": "You can modify your brands and categories preferences inside your profile by tapping on them.",
 } 
