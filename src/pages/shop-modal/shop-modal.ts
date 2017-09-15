@@ -34,6 +34,7 @@ export class ShopModalPage {
     shop: Store;
     categorie: Array<Categoria>;
     brands: Array<Brand>;
+    foto: String = "";
 
   constructor(
       public navCtrl: NavController, 
@@ -90,6 +91,7 @@ export class ShopModalPage {
         this.sStore.getStore(this.shop_id)
             .then((data: Store)=>{
                 this.shop = data;
+                this.foto = "http://dominiotestprova.altervista.org/image/store/" + this.shop.foto;
             })
             .catch(()=>{
                 console.log("errore Shop: non sono riuscito a caricare le Info");

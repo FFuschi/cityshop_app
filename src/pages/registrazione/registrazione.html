@@ -14,12 +14,10 @@
 <ion-content class="registrazione" padding>
 
   <div style="text-align:center;">
-    <ion-avatar item-start>
-        <img src="http://dominiotestprova.altervista.org/image/avatars/{{image}}"(click)="presentActionSheet()">
-        <ion-fab>
-            <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
-        </ion-fab>
-    </ion-avatar>
+      <div class="img_div_profile" [style.backgroundImage]="'url(' + foto + ')'"></div>
+      <div class="button-foto" (click)="presentActionSheet()">
+           <ion-icon name="md-camera" class="icon_profile"></ion-icon>
+      </div>
   </div>
 
   <!-- FORM DI REGISTRAZIONE-->

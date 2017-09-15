@@ -14,21 +14,22 @@
 
 
 <ion-content>
-    <ion-list>
+    <div class='div_title'><p class='color_gray'> Seleziona Brands </p></div>
+    <hr class='divide_line'>
+    <ion-content style="height: 70%">
+        <ion-list>
 
-    <ion-item class="item" *ngFor="let item of brands; let i = index;" (click)="updateBrand(i, item)" id="check{{item.nome}}">
-        <div class="categoryImg" item-start>
-            <img style="height: 100%" src="http://dominiotestprova.altervista.org/image/brands/{{item.foto}}">
-         </div>
-        <h2 style="margin-left: 10%">{{item.nome}}</h2>
-    </ion-item>
+            <ion-item class="item" *ngFor="let item of brands; let i = index;" (click)="updateBrand(i, item)" id="check{{item.nome}}">
+                <div class="categoryImg" item-start>
+                    <img style="height: 100%" src="http://dominiotestprova.altervista.org/image/brands/{{item.foto}}">
+                 </div>
+                <h2 style="margin-left: 10%">{{item.nome}}</h2>
+            </ion-item>
 
-  </ion-list>
-    
-  <p>
-    <ion-buttons end>
+      </ion-list>
+    </ion-content>
+     <hr class='divide_line'>
+    <ion-buttons class='button_next' end>
       <button ion-button (click)="next()"> Fine </button>
     </ion-buttons>
-  </p>
-    
 </ion-content>

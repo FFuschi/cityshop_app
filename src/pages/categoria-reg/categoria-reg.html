@@ -13,9 +13,9 @@
 </ion-header>
 
 <ion-content>
-    <p> TEST </p>
-    <hr>
-    <ion-content style="height: 75%">
+    <div class='div_title'><p class='color_gray'> Seleziona Categorie </p></div>
+    <hr class='divide_line'>
+    <ion-content style="height: 70%">
         <ion-list>
 
             <ion-item class="item" *ngFor="let item of categories; let i = index;" (click)="updateCategory(i, item)" id="check{{item.nome}}">
@@ -27,10 +27,9 @@
 
         </ion-list>
     </ion-content>
-    <p>
-    <ion-buttons end>
+    <hr class='divide_line'>
+    <ion-buttons class='button_next' end>
       <button ion-button (click)="next()"> Avanti </button>
     </ion-buttons>
-    </p>
     
 </ion-content>

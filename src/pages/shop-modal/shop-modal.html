@@ -18,8 +18,8 @@
                 <ion-grid class="box_copyright">
                       <ion-row center>
                             <ion-col no-padding no-margin>
-
-                                <img *ngIf="shop != null" class="img_shop" src="http://dominiotestprova.altervista.org/image/store/{{shop.foto}}" no-padding no-margin>
+                                <div class="img_shop" no-padding no-margin [style.backgroundImage]="'url(' + foto + ')'"></div>
+                                <!--<img *ngIf="shop != null" class="img_shop" src="http://dominiotestprova.altervista.org/image/store/{{shop.foto}}" no-padding no-margin>-->
                             </ion-col>
                           <ion-col no-padding no-margin>
 

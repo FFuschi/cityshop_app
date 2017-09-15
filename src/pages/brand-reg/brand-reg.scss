@@ -15,5 +15,24 @@ page-brand-reg {
         cursor: pointer;
         
     }
+    
+    .div_title {
+        text-align: center; 
+        margin: 20px
+    }
+    .divide_line {
+        margin-right: 30px; 
+        margin-left: 30px
+    }
+    .button_next {
+        margin-right: 30px; 
+        margin-top: 30px;
+        button {
+            width: 80px;
+        }  
+    }
+    .color_gray {
+        color: #7b7b7b
+    }
 
 }

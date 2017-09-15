@@ -3,20 +3,50 @@ page-profile {
         background-color: #ff823e;
     }
     
+    
     .img_row{
         
         height: 180px;
         
         .img_col{
             height: 100%;
+            width: 100%;
             text-align: center;
                 
-            .img_profile{
-                margin-top: 2%;
-                height: 80%;
-                width: auto;
-                border-radius: 50%;
+            .img_div_profile{
+                
+                display: block;
+                width: 150px;
+                height: 150px;
+                margin: 1em auto;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                -webkit-border-radius: 99em;
+                -moz-border-radius: 99em;
+                border-radius: 99em;
+                box-shadow: 5px 5px 7px #666666;
+             
             }
+            
+            .button-foto{
+                z-index: 1;
+                margin-top: -50px;
+                margin-left: 55%;
+                height: 50px;
+                width: 50px;
+                background-color: #ff823e;
+                border-radius: 50%;
+                box-shadow: 5px 5px 7px #666666;
+                position: absolute;
+                
+                .icon_profile{
+                    margin-top: 25%;
+                    font-size: 30px;   
+                    color: white;
+                }
+            }
+            
         }
         
     }
@@ -41,6 +71,10 @@ page-profile {
     
     .left{
         text-align: left
+    }
+    
+    .text_color_gray {
+        color: #7b7b7b;
     }
     
     .div_image{

@@ -12,6 +12,7 @@ import { Camera} from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
+import { Globalization } from '@ionic-native/globalization';
 
 import { MyApp } from './app.component';
 import { SplashPage } from '../pages/splash/splash';
@@ -37,6 +38,8 @@ import { ProductProvider } from '../providers/product/product';
 import { CategoryProvider } from '../providers/category/category';
 import { BrandProvider } from '../providers/brand/brand';
 import { AccesspersistanceProvider } from '../providers/accesspersistance/accesspersistance';
+import { DictionaryPipe } from '../pipes/dictionary/dictionary';
+import { DictionaryServiceProvider } from '../providers/dictionary-service/dictionary-service';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,8 @@ import { AccesspersistanceProvider } from '../providers/accesspersistance/access
     CategoriesPage,
     BrandsPage,
     CategoriaRegPage,
-    BrandRegPage
+    BrandRegPage,
+    DictionaryPipe
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,9 @@ import { AccesspersistanceProvider } from '../providers/accesspersistance/access
     File,
     FileTransfer,
     FileTransferObject,
-    FilePath
+    FilePath,
+    Globalization,
+    DictionaryServiceProvider
   ]
 })
 export class AppModule {}

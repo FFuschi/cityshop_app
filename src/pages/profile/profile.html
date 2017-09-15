@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title class="titolo">PROFILO</ion-title>
+    <ion-title class="titolo">Profilo</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,39 +16,42 @@
 <ion-content padding center>
     <ion-grid>
         <ion-row center class="img_row">
-            <ion-col class="img_col" >
-                <img *ngIf="user != null" class="img_profile" src="http://dominiotestprova.altervista.org/image/avatars/{{user.image}}" center (click)="presentActionSheet()"> 
+            <ion-col class="img_col" center>
+                
+                <div class="img_div_profile" [style.backgroundImage]="'url(' + foto + ')'"></div>
+                <div class="button-foto" (click)="presentActionSheet()">
+                    <ion-icon name="md-camera" class="icon_profile"></ion-icon>
+                </div>
             </ion-col>
-        
         </ion-row>
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4 *ngIf="user != null">{{user.firstname}}</h4>
+                <h4 *ngIf="user != null" >{{user.firstname}}</h4>
             </ion-col>
             <ion-col >
 
                 <button *ngIf="user != null" ion-button icon-only color="dark" clear class="edit_button" (click)="changeAttribute(user.firstname, 'firstname')">
-                    <ion-icon name="md-create"></ion-icon>
+                    <ion-icon name="md-create" class="text_color_gray"></ion-icon>
                 </button>
             </ion-col>
         </ion-row>
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4 *ngIf="user != null">{{user.lastname}}</h4>
+                <h4 *ngIf="user != null" >{{user.lastname}}</h4>
             </ion-col>
             <ion-col >
 
                 <button *ngIf="user != null" ion-button icon-only color="dark" clear class="edit_button" (click)="changeAttribute(user.lastname, 'lastname')">
-                    <ion-icon name="md-create"></ion-icon>
+                    <ion-icon name="md-create" class="text_color_gray"></ion-icon>
                 </button>
             </ion-col>
         </ion-row>
         <ion-row center class="text_row">
             <ion-col class="text_col">
 
-                <h4 *ngIf="user != null">{{user.email}}</h4>
+                <h4 *ngIf="user != null" >{{user.email}}</h4>
             </ion-col>
             <ion-col >
 
@@ -58,10 +61,10 @@
         <ion-row margin>
             <ion-col class="right" col-7>
 
-                <h4 style="margin-top: 10px">Brands</h4>
+                <h4 style="margin-top: 10px" class="text_color_gray">Brands</h4>
             </ion-col>
             <ion-col class="left" col-5>
-                <button ion-button icon-only color="dark" clear (click)="openBrands()">
+                <button ion-button icon-only color="dark" clear class="text_color_gray" (click)="openBrands()">
                     <ion-icon name="md-create"></ion-icon>
                 </button>
             </ion-col>
@@ -79,11 +82,11 @@
         <ion-row margin>
             <ion-col class="right" col-7>
 
-                <h4 style="margin-top: 10px">Categorie</h4>
+                <h4 style="margin-top: 10px" class="text_color_gray">Categorie</h4>
             </ion-col>
             <ion-col class="left" col-5>
                 <button ion-button icon-only color="dark" clear (click)="openCategories()">
-                    <ion-icon name="md-create"></ion-icon>
+                    <ion-icon name="md-create" class="text_color_gray"></ion-icon>
                 </button>
             </ion-col>
             

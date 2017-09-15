@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
 
-import { NavController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Platform } from 'ionic-angular';
 
 //Providers
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { AccountProvider } from '../../providers/account/account';
 
-
-import { TutorialPage } from '../tutorial/tutorial';
 import { AlertController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
 
@@ -28,7 +26,6 @@ declare var cordova: any;
 export class RegistrazionePage {
     
     lastImage: string = 'http://dominiotestprova.altervista.org/image/avatars/avatardefault.png';
-    loading: Loading;
     
     user: UserReg = new UserReg;
     email: string = "";
@@ -37,9 +34,7 @@ export class RegistrazionePage {
     lastname: string = "";
     confermapassword: string = "";
     image: string = "avatardefault.png";
-    
-    public base64Image: string;
-    
+    foto: String = "http://dominiotestprova.altervista.org/image/avatars/avatardefault.png";
     
 
     constructor(public navCtrl: NavController, 
@@ -115,7 +110,6 @@ export class RegistrazionePage {
         // Get the data of an image
         this.camera.getPicture(options).then((imagePath) => {
           // Special handling for Android library
-            alert("entra");
           if (this.plt.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
             this.filePath.resolveNativePath(imagePath)
               .then(filePath => {
@@ -135,7 +129,6 @@ export class RegistrazionePage {
     
     // Create a new name for the image
     private createFileName() {
-        alert("entra2");
       var d = new Date(),
       n = d.getTime(),
       newFileName ="IMG_" + n + ".jpg";
@@ -144,7 +137,6 @@ export class RegistrazionePage {
 
     // Copy the image to a local folder
     private copyFileToLocalDir(namePath, currentName, newFileName) {
-        alert("entra3");
         let bool = this.file.checkDir(cordova.file.externalRootDirectory, "Cityshop");
         if(!bool){
             this.file.createDir(cordova.file.externalRootDirectory, "Cityshop", false)
@@ -157,7 +149,6 @@ export class RegistrazionePage {
                   });
                });
         } else {
-        alert("entra5");
            let path = cordova.file.externalRootDirectory + "Cityshop";
               this.file.copyFile(namePath, currentName, path, newFileName).then(() => {
                 this.lastImage = newFileName;
@@ -167,11 +158,11 @@ export class RegistrazionePage {
     }
     
     public uploadImage() {
-        /*let loading = this.loading.create({
+        let loading = this.loadingCtrl.create({
             content: 'Attendi...'
           });
 
-          loading.present();*/
+          loading.present();
         
         // Destination URL
         var url = "http://dominiotestprova.altervista.org/upload.php";
@@ -195,120 +186,14 @@ export class RegistrazionePage {
         // Use the FileTransfer to upload the image
         fileTransfer.upload(targetPath, url, options).then(data => {
             this.image = filename;
-           /* loading.dismiss();*/
+            this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + filename;
+            loading.dismiss();
         }, err => {
-            /*loading.dismiss();*/
+            loading.dismiss();
             alert("Errore");
         });
     }
-    /*
-    public takePicture(sourceType) {
-        // Create options for the Camera Dialog
-        var options = {
-          quality: 50,
-          sourceType: sourceType,
-          saveToPhotoAlbum: false,
-          correctOrientation: true,
-          cameraDirection: 1
-        };
-
-        // Get the data of an image
-        this.camera.getPicture(options).then((imagePath) => {
-          // Special handling for Android library
-          if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-            this.filePath.resolveNativePath(imagePath)
-              .then(filePath => {
-                let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-                this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                this.uploadImage();
-              });
-            } else {
-                var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-                var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-                this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                this.uploadImage();
-            }
-        }, (err) => {
-          this.alertCtrl.create({
-                    title: "Alert",
-                    message: "Errore nella selezione dell'immagine",
-                    buttons: ['OK']
-                }).present();
-        });
-      }
-    // Create a new name for the image
-    private createFileName() {
-      var d = new Date(),
-      n = d.getTime(),
-      newFileName =  n + ".jpg";
-      return newFileName;
-    }
- 
-    // Copy the image to a local folder
-    private copyFileToLocalDir(namePath, currentName, newFileName) {
-        this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(success => {
-        this.lastImage = newFileName;
-      }, error => {
-        this.alertCtrl.create({
-                    title: "Errore",
-                    message: "Immagine non caricata",
-                    buttons: ['OK']
-                }).present();
-      });
-    }
-
-    public uploadImage() {
-      // Destination URL
-      var url = "http://dominiotestprova.altervista.org/upload.php";
-
-      // File for Upload
-      var targetPath = this.pathForImage(this.lastImage);
-
-      // File name only
-      var filename = this.lastImage;
-
-      var options = {
-        fileKey: "file",
-        fileName: filename,
-        chunkedMode: false,
-        mimeType: "multipart/form-data",
-        params : {'fileName': filename}
-      };
-
-      const fileTransfer: FileTransferObject = this.transfer.create();
-
-      this.loading = this.loadingCtrl.create({
-        content: 'Caricamento...',
-      });
-      this.loading.present();
-
-      // Use the FileTransfer to upload the image
-      fileTransfer.upload(targetPath, url, options).then(data => {
-        this.loading.dismissAll()
-        this.alertCtrl.create({
-                    title: "Immagine caricata con successo!",
-                    buttons: ['OK']
-                }).present();
-      }, err => {
-        this.loading.dismissAll()
-        this.alertCtrl.create({
-                    title: "Errore",
-                    message: "Errore nell'upload dell'immagine",
-                    buttons: ['Conferma']
-                }).present();
-      });
-    }
- 
-    // Always get the accurate path to your apps folder
-    public pathForImage(img) {
-      if (img === null) {
-        return '';
-      } else {
-        return this.file.dataDirectory + img;
-      }
-    }
-    */
+    
     signup() {
         this._validate();
     }

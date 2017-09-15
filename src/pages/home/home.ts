@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Platform, IonicPage } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 
@@ -31,7 +31,7 @@ import {AccountProvider} from '../../providers/account/account';
 //Providers
 import {StoreProvider} from '../../providers/store/store';
 
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -44,6 +44,9 @@ export class HomePage {
     zoom = 15;
     location: LatLng;
     start: LatLng = new LatLng(0, 0);
+    foto: String = "http://dominiotestprova.altervista.org/image/avatars/avatardefault.png";
+    
+    @ViewChild('map_canvas') mapElement: ElementRef;
     
     constructor(
         public navCtrl: NavController, 
@@ -61,7 +64,7 @@ export class HomePage {
     
     ngOnInit(){
         this.getUser();
-        
+        this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + this.user.image;
     }
     
     ionViewWillEnter(){
@@ -83,6 +86,11 @@ export class HomePage {
         this.plt.ready().then(() => {
             
             this.loadMap();
+            this.geolocation.getCurrentPosition()
+                .then((coord)=>{
+                    this.map.clear();
+                    this.getStores(coord.coords.latitude, coord.coords.longitude);
+                })
            
         });
         
@@ -141,8 +149,9 @@ export class HomePage {
 
      // create a new map by passing HTMLElement
      
-     let element: HTMLElement = document.getElementById('map_canvas');
-     this.map = this.googleMaps.create(element);
+     //let element: HTMLElement = document.getElementById('map_canvas');
+     this.map = this.googleMaps.create(this.mapElement.nativeElement);
+     //
      // listen to MAP_READY event
      // You must wait for this event to fire before adding something to the map or modifying it in anyway
      this.map.one(GoogleMapsEvent.MAP_READY).then(

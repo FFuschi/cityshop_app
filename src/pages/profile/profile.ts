@@ -41,6 +41,7 @@ export class ProfilePage {
     token: String = "";
     categorie: Array<Categoria>;
     brands: Array<Brand>;
+    foto: String = "http://dominiotestprova.altervista.org/image/avatars/avatardefault.png";
 
   constructor(
       private navCtrl: NavController, 
@@ -66,6 +67,7 @@ export class ProfilePage {
   ngOnInit(){
         this.getUser();
         this.token = this.user.token;
+        this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + this.user.image;
         this.getCategories();
         this.getBrands();
     }
@@ -280,11 +282,10 @@ export class ProfilePage {
             this.sAccount.update(this.user, this.token)
                         .then(()=>{
                             this.getUser();
-                            return;
+                            this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + this.user.image;
                         })
                         .catch(()=>{
                             console.log("errore Shop: non sono riuscito a caricare le Info");
-                            return false;
                         }); 
             loading.dismiss();
         }, err => {
