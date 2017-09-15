@@ -36,6 +36,7 @@ export class RegistrazionePage {
     firstname: string = "";
     lastname: string = "";
     confermapassword: string = "";
+    image: string = "avatardefault.png";
     
     public base64Image: string;
     
@@ -74,8 +75,8 @@ export class RegistrazionePage {
     
     presentActionSheet() {
         let actionSheet = this.actionSheetCtrl.create({
-            cssClass: 'alertTitle',
             title: 'Seleziona una foto',
+            cssClass: 'alertTitle',
             buttons: [
             {
               icon: "md-image",
@@ -91,7 +92,6 @@ export class RegistrazionePage {
               }
             }, {
               cssClass: 'cancelCss',
-              icon: 'md-close',
               text: 'Annulla',
               role: 'cancel',
               handler: () => {
@@ -102,7 +102,106 @@ export class RegistrazionePage {
         });
         actionSheet.present();
     }
+    public takePicture(sourceType) { 
+        
+        // Create options for the Camera Dialog
+        var options = {
+          quality: 50,
+          sourceType: sourceType,
+          saveToPhotoAlbum: false,
+          correctOrientation: true
+        };
+
+        // Get the data of an image
+        this.camera.getPicture(options).then((imagePath) => {
+          // Special handling for Android library
+            alert("entra");
+          if (this.plt.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+            this.filePath.resolveNativePath(imagePath)
+              .then(filePath => {
+                let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+                this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+              });
+          } else {
+            var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+            var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+          }
+        }, () => {
+        
+        });
+    }
     
+    // Create a new name for the image
+    private createFileName() {
+        alert("entra2");
+      var d = new Date(),
+      n = d.getTime(),
+      newFileName ="IMG_" + n + ".jpg";
+      return newFileName;
+    }
+
+    // Copy the image to a local folder
+    private copyFileToLocalDir(namePath, currentName, newFileName) {
+        alert("entra3");
+        let bool = this.file.checkDir(cordova.file.externalRootDirectory, "Cityshop");
+        if(!bool){
+            this.file.createDir(cordova.file.externalRootDirectory, "Cityshop", false)
+              .then(()=>{
+                  alert("entra4");
+                  let path = cordova.file.externalRootDirectory + "Cityshop";
+                  this.file.copyFile(namePath, currentName, path, newFileName).then(() => {
+                    this.lastImage = newFileName;
+                    this.uploadImage();
+                  });
+               });
+        } else {
+        alert("entra5");
+           let path = cordova.file.externalRootDirectory + "Cityshop";
+              this.file.copyFile(namePath, currentName, path, newFileName).then(() => {
+                this.lastImage = newFileName;
+                this.uploadImage();
+              }); 
+        }
+    }
+    
+    public uploadImage() {
+        /*let loading = this.loading.create({
+            content: 'Attendi...'
+          });
+
+          loading.present();*/
+        
+        // Destination URL
+        var url = "http://dominiotestprova.altervista.org/upload.php";
+
+        // File for Upload
+        var targetPath = cordova.file.externalRootDirectory + "Cityshop/" + this.lastImage;
+
+        // File name only
+        var filename = this.lastImage;
+
+        var options = {
+          fileKey: "file",
+          fileName: filename,
+          chunkedMode: false,
+          mimeType: "multipart/form-data",
+          params : {'fileName': filename}
+        };
+
+        const fileTransfer: FileTransferObject = this.transfer.create();
+
+        // Use the FileTransfer to upload the image
+        fileTransfer.upload(targetPath, url, options).then(data => {
+            this.image = filename;
+           /* loading.dismiss();*/
+        }, err => {
+            /*loading.dismiss();*/
+            alert("Errore");
+        });
+    }
+    /*
     public takePicture(sourceType) {
         // Create options for the Camera Dialog
         var options = {
@@ -152,7 +251,7 @@ export class RegistrazionePage {
         this.lastImage = newFileName;
       }, error => {
         this.alertCtrl.create({
-                    title: "Alert",
+                    title: "Errore",
                     message: "Immagine non caricata",
                     buttons: ['OK']
                 }).present();
@@ -180,7 +279,7 @@ export class RegistrazionePage {
       const fileTransfer: FileTransferObject = this.transfer.create();
 
       this.loading = this.loadingCtrl.create({
-        content: 'Uploading...',
+        content: 'Caricamento...',
       });
       this.loading.present();
 
@@ -188,14 +287,13 @@ export class RegistrazionePage {
       fileTransfer.upload(targetPath, url, options).then(data => {
         this.loading.dismissAll()
         this.alertCtrl.create({
-                    title: "Alert",
-                    message: "Immagine caricata con successo",
+                    title: "Immagine caricata con successo!",
                     buttons: ['OK']
                 }).present();
       }, err => {
         this.loading.dismissAll()
         this.alertCtrl.create({
-                    title: "alert",
+                    title: "Errore",
                     message: "Errore nell'upload dell'immagine",
                     buttons: ['Conferma']
                 }).present();
@@ -210,7 +308,7 @@ export class RegistrazionePage {
         return this.file.dataDirectory + img;
       }
     }
-    
+    */
     signup() {
         this._validate();
     }
@@ -235,7 +333,7 @@ export class RegistrazionePage {
             if (msg !== "") {
 
                 this.alertCtrl.create({
-                   title: "Alert",
+                   title: "Errore di registrazione",
                     message: msg,
                     buttons: ['OK']
                 }).present();
@@ -248,12 +346,12 @@ export class RegistrazionePage {
                         this.user.password = this.password;
                         this.user.nome = this.firstname;
                         this.user.cognome = this.lastname;
-                        this.user.foto = this.lastImage;
+                        this.user.foto = this.image;
                         this.navCtrl.push(CategoriaRegPage, {user: this.user});
                         
                     } else {
                         this.alertCtrl.create({
-                        title: "Alert",
+                        title: "Attenzione",
                         message: "Utente già esistente",
                         buttons: ['OK']
                         }).present();

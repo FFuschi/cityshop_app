@@ -15,7 +15,7 @@
 
   <div style="text-align:center;">
     <ion-avatar item-start>
-        <img src="{{lastImage}}"(click)="presentActionSheet()">
+        <img src="http://dominiotestprova.altervista.org/image/avatars/{{image}}"(click)="presentActionSheet()">
         <ion-fab>
             <button ion-fab color="primary" (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
         </ion-fab>
@@ -35,7 +35,7 @@
 
   <ion-item>
     <ion-label floating><ion-icon name="mail"></ion-icon> email </ion-label>
-    <ion-input type="email" [(ngModel)]="email"></ion-input>
+    <ion-input type="email" [(ngModel)]="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
   </ion-item>
 
   <ion-item>

@@ -72,9 +72,9 @@ export class LoginPage {
                 else {
                     loading.dismiss().then(() => {
                         this.alertCtrl.create({
-                            title: "Errore di registrazione",
+                            title: "Errore di login",
                             message: "Dati non corretti o inesistenti",
-                            buttons: ['Confirm']
+                            buttons: ['OK']
                         }).present();
                     });
                 }
@@ -82,9 +82,9 @@ export class LoginPage {
             .catch(() => {
                 console.log("errore login: non mi sono riuscito a loggare");
                 this.alertCtrl.create({
-                    title: "alert",
+                    title: "Errore login",
                     message: "Problema di connessione con il database",
-                    buttons: ['Confirm']
+                    buttons: ['OK']
                 })
             });
     }
@@ -92,16 +92,16 @@ export class LoginPage {
     private validate() {
             let msg = "";
             if (this.email.trim() === "") {
-                msg = "Per favore inserisci un'email valida";
+                msg = "Per favore inseririsci un'email valida";
             } else if (this.password.trim() === "") {
-                msg = "Per favore inserire una password";
+                msg = "Per favore inserisci una password";
             }
             
             if (msg !== "") {
                 this.alertCtrl.create({
-                    title: "alert",
+                    title: "Errore di login",
                     message: msg,
-                    buttons: ['Confirm']
+                    buttons: ['OK']
                 }).present();
 
             } else {
