@@ -5,7 +5,7 @@
                 <div class="avatarsize" no-padding no-margin [style.backgroundImage]="'url(' + foto + ')'"  (click)="go_profile()"></div>
             </ion-col>
             <ion-col class="center">
-                  <h2 *ngIf="user != null" class="text_color_gray">{{ 'BENTORNATO' | dictionary }} {{user.firstname}}</h2>
+                  <h2 *ngIf="user != null" class="text_color_gray">{{ 'BENTORNATO' | dictionary:{case: 'notselected'} }} {{user.firstname}}</h2>
             </ion-col>
             <ion-col class="right" col-2>      
                   <button ion-button clear color="dark" icon-only class="button" (click)="presentPopover($event)">

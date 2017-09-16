@@ -5,6 +5,7 @@ import { Platform } from 'ionic-angular';
 //Providers
 import { AccountProvider } from '../../providers/account/account';
 import { AccesspersistanceProvider } from '../../providers/accesspersistance/accesspersistance';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -33,9 +34,11 @@ export class SplashPage {
       public navParams: NavParams, 
       private statusBar: StatusBar,
       public sAccount: AccountProvider,
-      public aPersistance: AccesspersistanceProvider
+      public aPersistance: AccesspersistanceProvider,
+      public sTranslate: DictionaryServiceProvider
       ) {
       
+      this.sTranslate.load();
       this.statusBar.hide();
       
   }

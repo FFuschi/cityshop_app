@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
+import {OptionsGetDictionary} from '../../dictionary/types';
 /**
  * Generated class for the DictionaryPipe pipe.
  *
@@ -20,11 +21,13 @@ export class DictionaryPipe implements PipeTransform {
       ) {
   }
    
-  transform(value: string, ...args){
-      let new_val; 
-      return this.sDictionary.load().then(()=>{
-          new_val = this.sDictionary.get(value);
-          return new_val;
-      })
+  transform(value: string, args?){
+      let option: OptionsGetDictionary;
+      if(args.case == 'lower' || args.case == 'upper') {
+          return this.sDictionary.get(value, option = {case: args.case});
+      } else {
+          return this.sDictionary.get(value);
+      }
+
   }
 }

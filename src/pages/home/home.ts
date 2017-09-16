@@ -86,11 +86,6 @@ export class HomePage {
         this.plt.ready().then(() => {
             
             this.loadMap();
-            this.geolocation.getCurrentPosition()
-                .then((coord)=>{
-                    this.map.clear();
-                    this.getStores(coord.coords.latitude, coord.coords.longitude);
-                })
            
         });
         

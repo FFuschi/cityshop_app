@@ -6,7 +6,9 @@ import 'rxjs/add/operator/map';
 import { Globalization } from '@ionic-native/globalization';
 import {Storage} from '@ionic/storage';
 
-import {STORAGE_KEYS, DICTIONARY_LANGUAGE_DEFAULT, LANGUAGES} from '../../dictionary/constants';
+import {STORAGE_KEYS, DICTIONARY_LANGUAGE_DEFAULT} from '../../dictionary/constants';
+
+import {OptionsGetDictionary} from '../../dictionary/types';
 
 
 /*
@@ -53,12 +55,23 @@ export class DictionaryServiceProvider {
     /**
      * Ritorna il valore corrispondente alla 'key' dal dizionario caricato 
      */
-    get(key: string) {
+    get(key: string, options?: OptionsGetDictionary) {
         if (this.dictionary) {
             let val: string = this.dictionary[key.toUpperCase()] || "";
             if (val === "") {
                 console.log(`Chiave ${key} non trovata nel dizionario corrente`);
-            } 
+            } else {
+                if (options) {
+                    switch (options.case) {
+                        case 'lower':
+                            val = val.toLowerCase();
+                            break;
+                        case 'upper':
+                            val = val.toUpperCase();
+                            break;
+                    }
+                }
+            }
             return val;
         }
         return "";
@@ -87,6 +100,7 @@ export class DictionaryServiceProvider {
         return new Promise(resolve => {
             this.globalization.getPreferredLanguage()
                 .then(res => {
+                    
                     resolve(res.value);
                 })
                 .catch(() => {
