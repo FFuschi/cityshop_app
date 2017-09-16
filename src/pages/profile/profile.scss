@@ -79,13 +79,14 @@ page-profile {
     
     .div_image{
         border: 1px solid #7b7b7b;
+        text-align: center;
         
         img {
             
             height: auto;
             width: 95%;
             margin-top: 2.5%;
-            margin-left: 2.5%;
+            margin-bottom: 2.5%;
         }
     }
 }
