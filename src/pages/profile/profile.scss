@@ -1,3 +1,23 @@
+.action_gallery{
+    
+   .icon {
+        font-size: 30px!important;
+        color: #ff823e!important;
+    }
+    
+}
+
+.action_cancel{
+    color: red!important;
+    padding-left: 43% !important;
+    border-top: 1px solid #7b7b7b !important;
+}
+
+.action-sheet-title{
+    text-align: center!important;
+    border-bottom: 1px solid #7b7b7b !important;
+}
+
 page-profile {
     .toolbar-background {
         background-color: #ff823e;
@@ -86,7 +106,8 @@ page-profile {
             height: auto;
             width: 95%;
             margin-top: 2.5%;
-            margin-bottom: 2.5%;
         }
     }
+    
+    
 }

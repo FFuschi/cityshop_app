@@ -170,6 +170,7 @@ export class ProfilePage {
         {
           icon: "md-image",
           text: 'Gallery',
+          cssClass: "action_gallery",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
           }
@@ -177,6 +178,7 @@ export class ProfilePage {
         {
           icon: 'md-camera',
           text: 'Foto',
+          cssClass: "action_gallery",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.CAMERA);
           }
@@ -184,6 +186,7 @@ export class ProfilePage {
         {
           text: 'Cancel',
           role: 'cancel',
+          cssClass: "action_cancel",
         }
       ]
     });

@@ -78,6 +78,8 @@ export class HomePage {
             // set status bar to white
             this.statusBar.backgroundColorByHexString('#7b7b7b');
             
+            this.getUser();
+            
         });
     }
     
