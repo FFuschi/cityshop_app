@@ -64,7 +64,6 @@ export class HomePage {
     
     ngOnInit(){
         this.getUser();
-        this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + this.user.image;
     }
     
     ionViewWillEnter(){
@@ -95,7 +94,7 @@ export class HomePage {
     
     getUser() {
         this.user = this.sAccount.getUser();
-            
+        this.foto = "http://dominiotestprova.altervista.org/image/avatars/" + this.user.image;   
     }
     
     getStores(latitude: number, longitude: number){

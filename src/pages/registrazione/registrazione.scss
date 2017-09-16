@@ -1,9 +1,21 @@
-.alertTitle{
-        text-align: center;
-        
-        .cancelCss{
-            color: red;
-        }
+.action_gallery{
+    
+   .icon {
+        font-size: 30px!important;
+        color: #ff823e!important;
+    }
+    
+}
+
+.action_cancel{
+    color: red!important;
+    padding-left: 43% !important;
+    border-top: 1px solid #7b7b7b !important;
+}
+
+.action-sheet-title{
+    text-align: center!important;
+    border-bottom: 1px solid #7b7b7b !important;
 }
 
 page-registrazione{

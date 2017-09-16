@@ -71,27 +71,25 @@ export class RegistrazionePage {
     presentActionSheet() {
         let actionSheet = this.actionSheetCtrl.create({
             title: 'Seleziona una foto',
-            cssClass: 'alertTitle',
             buttons: [
             {
               icon: "md-image",
               text: 'Galleria',
+              cssClass: "action_gallery",
               handler: () => {
                 this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
               }
             }, {
               icon: 'md-camera',
               text: 'Fotocamera',
+              cssClass: "action_gallery",
               handler: () => {
                 this.takePicture(this.camera.PictureSourceType.CAMERA);
               }
             }, {
-              cssClass: 'cancelCss',
+              cssClass: "action_cancel",
               text: 'Annulla',
               role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
             }
           ]
         });
