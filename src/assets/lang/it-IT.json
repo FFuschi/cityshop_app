@@ -5,25 +5,20 @@
     "SI": "si",
     "NO": "no",
     
-    //Brand-reg
     "BRANDS": "Brands",
     "SELECT": "Seleziona",
     "FINISH": "Fine",
     "WAIT": "Attendere...",
     
-    //Categoria-reg
     "CATEGORIES": "Categorie",
     "NEXT": "Avanti",
     
-    //Home
     "WELCOME": "Bentornato",
     
-    //Info
     "INFO": "Info",
     "VERSION": "Versione",
     "ARR": "Tutti i diritti riservati",
     
-    //Login
     "LOGIN": "Login",
     "USERNAME": "Username",
     "PASSWORD": "Password",
@@ -34,16 +29,13 @@
     "VALIDEMAIL": "Per favore inseririsci un'email valida",
     "VALIDPASS": "Per favore inserisci una password",
     
-    //Popover
     "TUTORIAL": "Tutorial",
     "LOGOUT": "Logout",
     
-    //Product
     "CATEGORY": "Categoria",
     "BRAND": "Brand",
     "DESCRIPTION": "Descrizione",
     
-    //Profile
     "PROFILE": "Profilo",
     "CANCEL": "Annulla",
     "SAVE": "Salva",
@@ -52,7 +44,6 @@
     "GALLERY": "Galleria",
     "ERROR": "Errore",
     
-    //Registrazione
     "REGISTER": "Registrati",
     "EMAIL": "Email",
     "FIRSTNAME": "Nome",
@@ -68,11 +59,9 @@
     "ALERT": "Attenzione",
     "USERREG": "Utente già esistente",
     
-    //Shop modal
     "OPENSHOP": "Apri Negozio",
     "OPENMAPS": "Apri Maps",
     
-    //Tutorial
     "SKIP": "Salta",
     "START": "Iniziamo!",
     "CONTINUE": "Continua",

@@ -5,25 +5,20 @@
     "SI": "yes",
     "NO": "no",
     
-    //Brand-reg
     "BRANDS": "Brands",
     "SELECT": "Select",
     "FINISH": "Finish",
     "WAIT": "Attendere...",
     
-    //Categories-reg
     "CATEGORIES": "Categories",
     "NEXT": "Next",
     
-    //Home
     "WELCOME": "Bentornato",
     
-    //Info
     "INFO": "Info",
     "VERSION": "Versione",
     "ARR": "All rights reserved",
     
-    //Login
     "LOGIN": "Signin",
     "USERNAME": "Username",
     "PASSWORD": "Password",
@@ -34,16 +29,13 @@
     "VALIDEMAIL": "Please insert a valid email",
     "VALIDPASS": "Please insert password",
     
-    //Popover
     "TUTORIAL": "Tutorial",
     "LOGOUT": "Logout",
     
-    //Product
     "CATEGORY": "Category",
     "BRAND": "Brand",
     "DESCRIPTION": "Description",
     
-    //Profile
     "PROFILE": "Profile",
     "CANCEL": "Cancel",
     "SAVE": "Save",
@@ -52,7 +44,6 @@
     "GALLERY": "Gallery",
     "ERROR": "Error",
     
-    //Registrazione
     "REGISTER": "Signup",
     "EMAIL": "Email",
     "FIRSTNAME": "First name",
@@ -68,11 +59,9 @@
     "ALERT": "Alert",
     "USERREG": "User already exists",
     
-    //Shop modal
     "OPENSHOP": "Open Shop",
     "OPENMAPS": "Open Maps",
     
-    //Tutorial
     "SKIP": "Skip",
     "START": "Let's start!",
     "CONTINUE": "Continue",
@@ -80,5 +69,5 @@
     "TUT1": "By tapping on one of the markers near you, you will be able to see the informations of the shops that sell products of your interest.",
     "TUT2": "To access your profile tap on your profile image!",
     "MODPREF": "Modify your preferences",
-    "TUT3": "You can modify your brands and categories preferences inside your profile by tapping on them.",
+    "TUT3": "You can modify your brands and categories preferences inside your profile by tapping on them."
 } 
