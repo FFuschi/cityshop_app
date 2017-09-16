@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 //Providers
 import { BrandProvider } from '../../providers/brand/brand';
 import { AccountProvider } from '../../providers/account/account';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 import { Brand } from '../../models/brand.model';
 import { HomePage } from '../home/home';
@@ -38,8 +39,9 @@ export class BrandRegPage {
       public sAccount: AccountProvider, 
       public loadingCtrl: LoadingController,
       public statusBar: StatusBar,
-      
-      public plt: Platform) {
+      public sTranslate: DictionaryServiceProvider,
+      public plt: Platform
+      ) {
       
         this.plt.ready().then(() => {  
               this.categories = this.navParams.get('categories');
@@ -94,7 +96,7 @@ export class BrandRegPage {
     
     next(){
         
-        const loading = this.loadingCtrl.create({content: "Attendere..."});
+        const loading = this.loadingCtrl.create({content: this.sTranslate.get("WAIT")});
         loading.present();
         
         for(let item of this.brandsSelector){

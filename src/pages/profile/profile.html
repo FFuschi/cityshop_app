@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title class="titolo">Profilo</ion-title>
+    <ion-title class="titolo">{{ 'PROFILE' | dictionary:{case: 'notselected'} }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -61,7 +61,7 @@
         <ion-row margin>
             <ion-col class="right" col-7>
 
-                <h4 style="margin-top: 10px" class="text_color_gray">Brands</h4>
+                <h4 style="margin-top: 10px" class="text_color_gray">{{ 'BRANDS' | dictionary:{case: 'notselected'} }}</h4>
             </ion-col>
             <ion-col class="left" col-5>
                 <button ion-button icon-only color="dark" clear class="text_color_gray" (click)="openBrands()">
@@ -82,7 +82,7 @@
         <ion-row margin>
             <ion-col class="right" col-7>
 
-                <h4 style="margin-top: 10px" class="text_color_gray">Categorie</h4>
+                <h4 style="margin-top: 10px" class="text_color_gray">{{ 'CATEGORIES' | dictionary:{case: 'notselected'} }}</h4>
             </ion-col>
             <ion-col class="left" col-5>
                 <button ion-button icon-only color="dark" clear (click)="openCategories()">

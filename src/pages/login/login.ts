@@ -12,6 +12,7 @@ import {User} from '../../models/user.model';
 
 //Providers
 import {AccountProvider} from '../../providers/account/account';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 @Component({
   selector: 'page-login',
@@ -29,7 +30,8 @@ export class LoginPage {
       public statusBar: StatusBar,
       public plt: Platform, 
       public loadingCtrl: LoadingController,
-      public alertCtrl: AlertController
+      public alertCtrl: AlertController,
+      public sTranslate: DictionaryServiceProvider
       ) {
     
   }
@@ -60,7 +62,7 @@ export class LoginPage {
     
     enterUser() {
         
-        const loading = this.loadingCtrl.create({ content: "Attendere..." });
+        const loading = this.loadingCtrl.create({ content: this.sTranslate.get("WAIT") });
         loading.present();
         this.sAccount.login(this.email, this.password)
             .then((user: User) => {
@@ -72,9 +74,9 @@ export class LoginPage {
                 else {
                     loading.dismiss().then(() => {
                         this.alertCtrl.create({
-                            title: "Errore di login",
-                            message: "Dati non corretti o inesistenti",
-                            buttons: ['OK']
+                            title: this.sTranslate.get("ERROROFLOGIN"),
+                            message: this.sTranslate.get("LOGINERROR"),
+                            buttons: [this.sTranslate.get("OK")]
                         }).present();
                     });
                 }
@@ -82,9 +84,9 @@ export class LoginPage {
             .catch(() => {
                 console.log("errore login: non mi sono riuscito a loggare");
                 this.alertCtrl.create({
-                    title: "Errore login",
-                    message: "Problema di connessione con il database",
-                    buttons: ['OK']
+                    title: this.sTranslate.get("ERROROFLOGIN"),
+                    message: this.sTranslate.get("DBERROR"),
+                    buttons: [this.sTranslate.get("OK")]
                 })
             });
     }
@@ -92,16 +94,16 @@ export class LoginPage {
     private validate() {
             let msg = "";
             if (this.email.trim() === "") {
-                msg = "Per favore inseririsci un'email valida";
+                msg = this.sTranslate.get("VALIDEMAIL");
             } else if (this.password.trim() === "") {
-                msg = "Per favore inserisci una password";
+                msg = this.sTranslate.get("VALIDPASS");
             }
             
             if (msg !== "") {
                 this.alertCtrl.create({
-                    title: "Errore di login",
+                    title: this.sTranslate.get("ERROROFLOGIN"),
                     message: msg,
-                    buttons: ['OK']
+                    buttons: [this.sTranslate.get("OK")]
                 }).present();
 
             } else {

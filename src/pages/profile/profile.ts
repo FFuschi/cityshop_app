@@ -19,6 +19,7 @@ import {Brand} from '../../models/brand.model';
 
 //Providers
 import {AccountProvider} from '../../providers/account/account';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 /**
  * Generated class for the ProfilePage page.
@@ -54,7 +55,8 @@ export class ProfilePage {
       private camera: Camera,
       private transfer: FileTransfer,
       private file: File, 
-      private filePath: FilePath
+      private filePath: FilePath,
+      public sTranslate: DictionaryServiceProvider
       ) {
       
       this.plt.ready().then(() => {
@@ -125,11 +127,11 @@ export class ProfilePage {
         ],
         buttons: [
           {
-            text: 'Annulla',
+            text: this.sTranslate.get("CANCEL"),
             role: 'cancel'
           },
           {
-            text: 'Salva',
+            text: this.sTranslate.get("SAVE"),
             handler: data => {
                 if(data.vale != ""){
                     var userUp = this.user;
@@ -165,11 +167,11 @@ export class ProfilePage {
   
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Immagine Profilo',
+      title: this.sTranslate.get("PROFILEIMAGE"),
       buttons: [
         {
           icon: "md-image",
-          text: 'Gallery',
+          text: this.sTranslate.get("GALLERY"),
           cssClass: "action_gallery",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
@@ -177,14 +179,14 @@ export class ProfilePage {
         },
         {
           icon: 'md-camera',
-          text: 'Foto',
+          text: this.sTranslate.get("PHOTO"),
           cssClass: "action_gallery",
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
-          text: 'Cancel',
+          text: this.sTranslate.get("CANCEL"),
           role: 'cancel',
           cssClass: "action_cancel",
         }
@@ -255,7 +257,7 @@ export class ProfilePage {
     
     public uploadImage() {
         let loading = this.loading.create({
-            content: 'Attendi...'
+            content: this.sTranslate.get("WAIT")
           });
 
           loading.present();
@@ -293,7 +295,7 @@ export class ProfilePage {
             loading.dismiss();
         }, err => {
             loading.dismiss();
-            alert("Errore");
+            alert(this.sTranslate.get("ERROR"));
         });
     }
 

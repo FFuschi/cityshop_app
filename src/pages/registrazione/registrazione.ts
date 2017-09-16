@@ -10,6 +10,7 @@ import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { AccountProvider } from '../../providers/account/account';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 import { AlertController } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular';
@@ -48,7 +49,8 @@ export class RegistrazionePage {
                 private file: File, 
                 private filePath: FilePath, 
                 public sAccount: AccountProvider,
-                public platform: Platform
+                public platform: Platform,
+                public sTranslate: DictionaryServiceProvider
                 ) {
     }
     
@@ -70,25 +72,25 @@ export class RegistrazionePage {
     
     presentActionSheet() {
         let actionSheet = this.actionSheetCtrl.create({
-            title: 'Seleziona una foto',
+            title: this.sTranslate.get("PHOTOSELECT"),
             buttons: [
             {
               icon: "md-image",
-              text: 'Galleria',
+              text: this.sTranslate.get("GALLERY"),
               cssClass: "action_gallery",
               handler: () => {
                 this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
               }
             }, {
               icon: 'md-camera',
-              text: 'Fotocamera',
+              text: this.sTranslate.get("PHOTO"),
               cssClass: "action_gallery",
               handler: () => {
                 this.takePicture(this.camera.PictureSourceType.CAMERA);
               }
             }, {
               cssClass: "action_cancel",
-              text: 'Annulla',
+              text: this.sTranslate.get("CANCEL"),
               role: 'cancel',
             }
           ]
@@ -157,7 +159,7 @@ export class RegistrazionePage {
     
     public uploadImage() {
         let loading = this.loadingCtrl.create({
-            content: 'Attendi...'
+            content: this.sTranslate.get("WAIT")
           });
 
           loading.present();
@@ -188,7 +190,7 @@ export class RegistrazionePage {
             loading.dismiss();
         }, err => {
             loading.dismiss();
-            alert("Errore");
+            alert(this.sTranslate.get("ERROR"));
         });
     }
     
@@ -200,27 +202,27 @@ export class RegistrazionePage {
             let msg = "";
             
             if (this.firstname.trim() === "") {
-                msg = "Inserire il nome";
+                msg = this.sTranslate.get("ERRORNAME");
             } else if (this.lastname.trim() === "") {
-                msg = "Inserire il cognome";
+                msg = this.sTranslate.get("ERRORSURNAME");
             } else if (this.email.trim() === "") {
-                msg = "Inserire un'email";
+                msg = this.sTranslate.get("ERROREMAIL");
             } else if (this.validateEmail(this.email) == false){
-                msg = "Inserire un'email valida";
+                msg = this.sTranslate.get("VALIDEMAIL");
             } else if (this.password.trim() === "") {
-                msg = "Inserire la password";
+                msg = this.sTranslate.get("ERRORPASSWORD");
             } else if (this.confermapassword.trim() === "") {
-                msg = "Inserire la password";
+                msg = this.sTranslate.get("ERRORPASSWORD");
             } else if (this.password != this.confermapassword) {
-                msg = "Le password inserite non corrispondono";
+                msg = this.sTranslate.get("ERRORMATCH");
             } 
             
             if (msg !== "") {
 
                 this.alertCtrl.create({
-                   title: "Errore di registrazione",
+                   title: this.sTranslate.get("ERRORREG"),
                     message: msg,
-                    buttons: ['OK']
+                    buttons: [this.sTranslate.get("OK")]
                 }).present();
 
             } else {
@@ -236,9 +238,9 @@ export class RegistrazionePage {
                         
                     } else {
                         this.alertCtrl.create({
-                        title: "Attenzione",
-                        message: "Utente già esistente",
-                        buttons: ['OK']
+                        title: this.sTranslate.get("ALERT"),
+                        message: this.sTranslate.get("USERREG"),
+                        buttons: [this.sTranslate.get("OK")]
                         }).present();
                     }
                 });

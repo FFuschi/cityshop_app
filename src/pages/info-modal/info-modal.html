@@ -9,7 +9,7 @@
         <div ion-fixed class="fixed">
             <ion-navbar hideBackButton class="navbar">
               
-            <ion-title class="title" center><ion-icon name="information-circle"></ion-icon> Info</ion-title>
+            <ion-title class="title" center><ion-icon name="information-circle"></ion-icon> {{ 'INFO' | dictionary:{case: 'notselected'} }} </ion-title>
             <ion-buttons end class="button">
                 <button ion-button icon-only color="dark" clear (click)="close()">
                     <ion-icon name="close"></ion-icon>
@@ -22,10 +22,10 @@
                         <ion-col>
                             <img src="assets/images/splash.png" class="img_logo">
                               <h5 text-uppercase no-padding no-margin color="dark">{{item_name}}</h5>
-                              <h6 no-padding no-margin>Version {{item_version}}</h6>
+                              <h6 no-padding no-margin>{{ 'VERSION' | dictionary:{case: 'notselected'} }} {{item_version}}</h6>
                               <br>
-                              <p no-padding no-margin>&#x24B8; 2017 CityShop Inc.</p>
-                              <p no-padding no-margin>All rights reserved</p>
+                              <p no-padding no-margin>&#x24B8; 2017 {{ 'APP_NAME' | dictionary:{case: 'notselected'} }} Inc.</p>
+                              <p no-padding no-margin>{{ 'ARR' | dictionary:{case: 'notselected'} }}</p>
                         </ion-col>
                   </ion-row>
             </ion-grid>

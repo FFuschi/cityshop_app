@@ -23,7 +23,7 @@
     "USERNAME": "Username",
     "PASSWORD": "Password",
     "SIGNUP": "Registrati",
-    "ERROROF": "Errore di",
+    "ERROROFLOGIN": "Errore di login",
     "LOGINERROR": "Dati non corretti o inesistenti",
     "DBERROR": "Problema di connessione con il database",
     "VALIDEMAIL": "Per favore inseririsci un'email valida",
@@ -36,6 +36,7 @@
     "BRAND": "Brand",
     "DESCRIPTION": "Descrizione",
     
+    "PROFILEIMAGE": "Immagine del profilo",
     "PROFILE": "Profilo",
     "CANCEL": "Annulla",
     "SAVE": "Salva",
@@ -61,6 +62,7 @@
     
     "OPENSHOP": "Apri Negozio",
     "OPENMAPS": "Apri Maps",
+    "TELEPHONE": "Telefono",
     
     "SKIP": "Salta",
     "START": "Iniziamo!",

@@ -28,14 +28,14 @@
 <ion-grid>
   <ion-row>
       <ion-col col-6 >
-          <p *ngIf="brand!= null">Brand: {{brand.nome}}</p>
-          <p *ngIf="category!= null">Categoria: {{category.nome}}</p>
+          <p *ngIf="brand!= null">{{ 'BRAND' | dictionary:{case: 'notselected'} }}: {{brand.nome}}</p>
+          <p *ngIf="category!= null">{{ 'CATEGORY' | dictionary:{case: 'notselected'} }}: {{category.nome}}</p>
       </ion-col>
   </ion-row>
 </ion-grid>﻿
 
 <div class="descrizione">
-    Descrizione
+    {{ 'DESCRIPTION' | dictionary:{case: 'notselected'} }}
 </div>
 
 <ion-card>

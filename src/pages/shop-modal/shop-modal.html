@@ -26,25 +26,25 @@
                               <div class="shop_name">
                                     <h5 text-uppercase no-padding no-margin color="dark" *ngIf="shop != null">{{shop.nome}}</h5>
                                     <p no-padding no-margin *ngIf="shop != null">{{shop.address}}</p>
-                                    <p no-padding no-margin>Telefono: <a *ngIf="shop != null" class="phone" href="tel:{{shop.phone}}">{{shop.phone}}</a></p> 
+                                    <p no-padding no-margin>{{ 'TELEPHONE' | dictionary:{case: 'notselected'} }}: <a *ngIf="shop != null" class="phone" href="tel:{{shop.phone}}">{{shop.phone}}</a></p> 
                               </div>
                            </ion-col>
                       </ion-row>
 
                         <ion-row center class="second_row">
                           <ion-col>
-                              <p no-padding no-margin class="link" (click)="openProducts()">Apri Negozio</p>
+                              <p no-padding no-margin class="link" (click)="openProducts()">{{ 'OPENSHOP' | dictionary:{case: 'notselected'} }}</p>
 
                            </ion-col>
                             <ion-col>
-                              <p no-padding no-margin class="link" (click)="openInMap()">Apri in Maps</p>
+                              <p no-padding no-margin class="link" (click)="openInMap()">{{ 'OPENMAPS' | dictionary:{case: 'notselected'} }}</p>
 
                            </ion-col>
                       </ion-row>
 
                         <ion-row center >
                           <ion-col>
-                              <p no-padding no-margin>Categorie</p>
+                              <p no-padding no-margin>{{ 'CATEGORIES' | dictionary:{case: 'notselected'} }}</p>
 
                            </ion-col>
 
@@ -59,7 +59,7 @@
                       </ion-row>
                     <ion-row center >
                           <ion-col>
-                              <p no-padding no-margin>Brands</p>
+                              <p no-padding no-margin>{{ 'BRANDS' | dictionary:{case: 'notselected'} }}</p>
 
                            </ion-col>
 

@@ -9,6 +9,7 @@ import { LoginPage } from '../login/login';
 
 //Providers
 import {AccountProvider} from '../../providers/account/account';
+import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
 
 import {
  GoogleMap
@@ -36,7 +37,8 @@ export class PopoverPage {
       public viewCtrl: ViewController, 
       private sAccount: AccountProvider, 
       public modalCtrl: ModalController,
-      public loading: LoadingController
+      public loading: LoadingController,
+      public sTranslate: DictionaryServiceProvider
       ) {
       this.map = navParams.get('map');
   }
@@ -66,7 +68,7 @@ export class PopoverPage {
   
   logout() {
       let loading = this.loading.create({
-        content: 'Attendi...'
+        content: this.sTranslate.get("WAIT")
       });
       
       loading.present();

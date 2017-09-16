@@ -10,15 +10,15 @@
     <ion-list>
       <button ion-item icon-start (click)="close(); tutorialAlert()">
           <ion-icon class="menuPadding" name="book"></ion-icon> 
-          Tutorial
+          {{ 'TUTORIAL' | dictionary:{case: 'notselected'} }}
       </button>
       <button ion-item icon-start (click)="close(); infoAlert()">
            <ion-icon class="menuPadding" name="ios-information-circle-outline"></ion-icon>
-           Info
+           {{ 'INFO' | dictionary:{case: 'notselected'} }}
       </button>
       <button ion-item icon-start (click)="close(); logout()">
            <ion-icon class="menuPadding" name="ios-close-circle-outline"></ion-icon>
-           Logout
+           {{ 'LOGOUT' | dictionary:{case: 'notselected'} }}
       </button>  
     </ion-list>
 

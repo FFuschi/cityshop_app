@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Brands</ion-title>
+    <ion-title>{{ 'BRANDS' | dictionary:{case: 'notselected'} }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    <div class='div_title'><p class='color_gray'> Seleziona Brands </p></div>
+    <div class='div_title'><p class='color_gray'> {{ 'SELECT' | dictionary:{case: 'notselected'} }} {{ 'BRANDS' | dictionary:{case: 'lower'} }} </p></div>
     <hr class='divide_line'>
     <ion-content style="height: 70%">
         <ion-list>
@@ -30,6 +30,6 @@
     </ion-content>
      <hr class='divide_line'>
     <ion-buttons class='button_next' end>
-      <button ion-button (click)="next()"> Fine </button>
+      <button ion-button (click)="next()"> {{ 'FINISH' | dictionary:{case: 'notselected'} }} </button>
     </ion-buttons>
 </ion-content>

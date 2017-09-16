@@ -8,22 +8,22 @@
     "BRANDS": "Brands",
     "SELECT": "Select",
     "FINISH": "Finish",
-    "WAIT": "Attendere...",
+    "WAIT": "Wait...",
     
     "CATEGORIES": "Categories",
     "NEXT": "Next",
     
-    "WELCOME": "Bentornato",
+    "WELCOME": "Welcome back",
     
     "INFO": "Info",
-    "VERSION": "Versione",
+    "VERSION": "Version",
     "ARR": "All rights reserved",
     
     "LOGIN": "Signin",
     "USERNAME": "Username",
     "PASSWORD": "Password",
     "SIGNUP": "Signup",
-    "ERROROF": "Error of",
+    "ERROROFLOGIN": "Login error",
     "LOGINERROR": "Incorrect or non-existent data",
     "DBERROR": "Database connection error",
     "VALIDEMAIL": "Please insert a valid email",
@@ -44,6 +44,7 @@
     "GALLERY": "Gallery",
     "ERROR": "Error",
     
+    "PROFILEIMAGE": "Profile image",
     "REGISTER": "Signup",
     "EMAIL": "Email",
     "FIRSTNAME": "First name",
@@ -61,6 +62,7 @@
     
     "OPENSHOP": "Open Shop",
     "OPENMAPS": "Open Maps",
+    "TELEPHONE": "Telefono",
     
     "SKIP": "Skip",
     "START": "Let's start!",
