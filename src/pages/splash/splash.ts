@@ -6,6 +6,7 @@ import { Platform } from 'ionic-angular';
 import { AccountProvider } from '../../providers/account/account';
 import { AccesspersistanceProvider } from '../../providers/accesspersistance/accesspersistance';
 import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
+import { RefreshMarkerPersistenceProvider } from '../../providers/refresh-marker-persistence/refresh-marker-persistence';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -35,9 +36,11 @@ export class SplashPage {
       private statusBar: StatusBar,
       public sAccount: AccountProvider,
       public aPersistance: AccesspersistanceProvider,
-      public sTranslate: DictionaryServiceProvider
+      public sTranslate: DictionaryServiceProvider,
+      public sMarker: RefreshMarkerPersistenceProvider
       ) {
       
+      this.sMarker.save(false);
       this.sTranslate.load();
       this.statusBar.hide();
       

@@ -40,6 +40,7 @@ import { BrandProvider } from '../providers/brand/brand';
 import { AccesspersistanceProvider } from '../providers/accesspersistance/accesspersistance';
 import { DictionaryPipe } from '../pipes/dictionary/dictionary';
 import { DictionaryServiceProvider } from '../providers/dictionary-service/dictionary-service';
+import { RefreshMarkerPersistenceProvider } from '../providers/refresh-marker-persistence/refresh-marker-persistence';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { DictionaryServiceProvider } from '../providers/dictionary-service/dicti
     FileTransferObject,
     FilePath,
     Globalization,
-    DictionaryServiceProvider
+    DictionaryServiceProvider,
+    RefreshMarkerPersistenceProvider
   ]
 })
 export class AppModule {}

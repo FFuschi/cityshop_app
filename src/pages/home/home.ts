@@ -27,6 +27,7 @@ import {Store} from '../../models/store.model';
 
 //Providers
 import {AccountProvider} from '../../providers/account/account';
+import { RefreshMarkerPersistenceProvider } from '../../providers/refresh-marker-persistence/refresh-marker-persistence';
 
 //Providers
 import {StoreProvider} from '../../providers/store/store';
@@ -57,7 +58,8 @@ export class HomePage {
         public popoverCtrl: PopoverController,  
         public modalCtrl: ModalController,
         public sAccount: AccountProvider, 
-        public sStore: StoreProvider
+        public sStore: StoreProvider,
+        public sMarker: RefreshMarkerPersistenceProvider
         ) {
         
     }
@@ -98,15 +100,17 @@ export class HomePage {
     }
     
     getStores(latitude: number, longitude: number){
+        
         if (this.user != null){
-            
             var token: String = this.user.token;
             this.sStore.getAllStore(token, latitude , longitude)
                 .then((data: Array<Store>)=>{
+                   
+                    this.map.clear();
                     for(let n of data){
-                        
                         let markerOptions: MarkerOptions = {
                             position: new LatLng(n.latitudine, n.longitudine),
+                            visible: true,
                             disableAutoPan: true,
                             animation: "bounce",
                             icon: {
@@ -120,7 +124,6 @@ export class HomePage {
                         
                         this.map.addMarker(markerOptions)
                             .then((marker: Marker) => {
-
                                 marker.addEventListener(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
                                     this.shop_info(n.id);
                                 });
@@ -129,6 +132,7 @@ export class HomePage {
                         
                 })
                 .catch(() => {
+                    this.map.clear();
                     console.log("errore Mappa: non sono riuscito a Caricare i Marker");
                 });     
          
@@ -175,7 +179,7 @@ export class HomePage {
             
             this.getPosition();
             
-            this.whatchPosition();
+            this.watchPosition();
            
        });
      
@@ -192,6 +196,7 @@ export class HomePage {
                     let controlBearing = resp.bearing;
                     
                     if(controlZoom != this.zoom || controlBearing != this.bearing){
+                        
                         this.zoom = controlZoom;
                         this.bearing = controlBearing;
                         
@@ -208,13 +213,12 @@ export class HomePage {
         });
     }
     
-    whatchPosition(){
+    watchPosition(){
         let watch = this.geolocation.watchPosition();
            watch.subscribe((data) => {
              // data can be a set of coordinates, or an error (if an error occurred).
              // data.coords.latitude
              // data.coords.longitude
-                
                 this.location = new LatLng(data.coords.latitude, data.coords.longitude);
                 
                 this.map.animateCamera({
@@ -225,14 +229,38 @@ export class HomePage {
                     duration: 500
                 });
                 
-                if (this.start.lat - data.coords.latitude > 0.02 || this.start.lat - data.coords.latitude < -0.02 ){
+                this.sMarker.get()
+                    .then((refresh: boolean)=>{
+                        if (
+                            this.start.lat - this.location.lat > 0.02 || 
+                            this.start.lat - this.location.lat < -0.02 || 
+                            this.start.lng - this.location.lng > 0.02 || 
+                            this.start.lng - this.location.lng < -0.02 ||
+                            refresh == true
+                            ){
+                            this.start = this.location;
+
+                            this.getStores(this.location.lat, this.location.lng);
+
+                        }
+                    })
+                    .catch(()=>{
+                        if (
+                            this.start.lat - this.location.lat > 0.02 || 
+                            this.start.lat - this.location.lat < -0.02 || 
+                            this.start.lng - this.location.lng > 0.02 || 
+                            this.start.lng - this.location.lng < -0.02
+                            ){
+
+                            this.start = this.location;
+
+                            this.getStores(this.location.lat, this.location.lng);
+
+                        }
+                    });
                     
-                    this.start = this.location;
-                    
-                    this.map.clear();
-                    this.getStores(data.coords.latitude, data.coords.longitude);
-                    
-                }
+                    this.sMarker.save(false);
+                
            
             });
     }

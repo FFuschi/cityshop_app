@@ -51,7 +51,7 @@ export class PopoverPage {
       this.viewCtrl.onDidDismiss(()=>{
         this.map.setClickable(false);
         this.navCtrl.push(TutorialPage);
-      })
+      });
   }
   
   infoAlert() {

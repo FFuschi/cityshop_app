@@ -89,7 +89,15 @@ export class DictionaryServiceProvider {
                         resolve({language});
                     });
                 } else {
-                    resolve({language});
+                    this._getPreferredLanguage().then(language_pref => {
+                        if(language == language_pref){
+                            resolve({language});
+                        } else {
+                            this._sStorage.set(STORAGE_KEYS.DICTIONARY_LANGUAGE, language_pref);
+                            resolve({language_pref});
+                        }
+                    });
+                    
                 }
                 
             });

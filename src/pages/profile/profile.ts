@@ -20,6 +20,7 @@ import {Brand} from '../../models/brand.model';
 //Providers
 import {AccountProvider} from '../../providers/account/account';
 import { DictionaryServiceProvider } from '../../providers/dictionary-service/dictionary-service';
+import { RefreshMarkerPersistenceProvider } from '../../providers/refresh-marker-persistence/refresh-marker-persistence';
 
 /**
  * Generated class for the ProfilePage page.
@@ -56,13 +57,9 @@ export class ProfilePage {
       private transfer: FileTransfer,
       private file: File, 
       private filePath: FilePath,
-      public sTranslate: DictionaryServiceProvider
+      public sTranslate: DictionaryServiceProvider,
+      public sMarker: RefreshMarkerPersistenceProvider
       ) {
-      
-      this.plt.ready().then(() => {
-            
-            
-       });
       
   }
   
@@ -91,6 +88,10 @@ export class ProfilePage {
             
         });
         
+    }
+    
+    ionViewDidLeave(){
+        this.sMarker.save(true);
     }
     
     getUser() {
